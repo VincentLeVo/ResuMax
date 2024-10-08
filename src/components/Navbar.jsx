@@ -8,6 +8,7 @@ import {
   MenuItems,
 } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import clsx from "clsx";
 
 const user = {
   name: "Tom Cook",
@@ -27,10 +28,6 @@ const userNavigation = [
   { name: "Settings", href: "#" },
   { name: "Sign out", href: "#" },
 ];
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
 
 export function Navbar({ children }) {
   return (
@@ -64,7 +61,7 @@ export function Navbar({ children }) {
                             key={item.name}
                             href={item.href}
                             aria-current={item.current ? "page" : undefined}
-                            className={classNames(
+                            className={clsx(
                               item.current
                                 ? "bg-blue-800 text-white"
                                 : "text-gray-300 hover:bg-blue-700/50 hover:text-white",
@@ -137,7 +134,7 @@ export function Navbar({ children }) {
                     as="a"
                     href={item.href}
                     aria-current={item.current ? "page" : undefined}
-                    className={classNames(
+                    className={clsx(
                       item.current
                         ? "bg-gray-900 text-white"
                         : "text-gray-300 hover:bg-gray-700 hover:text-white",
@@ -183,7 +180,7 @@ export function Navbar({ children }) {
           </Disclosure>
           <header className="py-10">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-              <h1 className="text-3xl font-bold tracking-tight text-white">
+              <h1 className="text-1xl font-bold tracking-tight text-white">
                 Dashboard
               </h1>
             </div>
@@ -192,7 +189,7 @@ export function Navbar({ children }) {
 
         <main className="-mt-32">
           <div className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
-            <div className="rounded-lg bg-white px-5 py-6 shadow sm:px-6">
+            <div className="rounded-lg bg-stone-800 px-5 py-6 shadow sm:px-6">
               {children}
             </div>
           </div>
