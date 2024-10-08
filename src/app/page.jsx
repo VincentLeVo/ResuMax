@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { Container } from "@/components/Container";
 import { PaperClipIcon } from "@heroicons/react/24/solid";
+import { Heading, Subheading } from "@/components/Text";
+import clsx from "clsx";
 export default function Home() {
   return (
     <>
@@ -12,8 +14,8 @@ export default function Home() {
             </h2>
           </div>
         </div>
-        <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
-          <div className="text-center">
+        <div className="mt-2 max-w-md mx-auto flex  flex-col justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
+          <div className="text-center self-center">
             <PaperClipIcon
               aria-hidden="true"
               className="mx-auto h-12 w-12 text-blue-400/50"
@@ -37,6 +39,55 @@ export default function Home() {
               PDF File Up To 10MB
             </p>
           </div>
+          <ul
+            role="list"
+            className="divide-y divide-white/10 rounded-md border border-white/20"
+          >
+            <li className="flex items-center justify-between py-4 pl-4 pr-5 text-sm leading-6">
+              <div className="flex w-0 flex-1 items-center">
+                <PaperClipIcon
+                  aria-hidden="true"
+                  className="h-5 w-5 flex-shrink-0 text-gray-400"
+                />
+                <div className="ml-4 flex min-w-0 flex-1 gap-2">
+                  <span className="truncate text-gray-400 font-medium">
+                    resume_back_end_developer.pdf
+                  </span>
+                  <span className="flex-shrink-0 text-gray-400">2.4mb</span>
+                </div>
+              </div>
+              <div className="ml-4 flex-shrink-0">
+                <a
+                  href="#"
+                  className="font-medium text-red-400 hover:text-indigo-300"
+                >
+                  Remove
+                </a>
+              </div>
+            </li>
+            <li className="flex items-center justify-between py-4 pl-4 pr-5 text-sm leading-6">
+              <div className="flex w-0 flex-1 items-center">
+                <PaperClipIcon
+                  aria-hidden="true"
+                  className="h-5 w-5 flex-shrink-0 text-gray-400"
+                />
+                <div className="ml-4 flex min-w-0 flex-1 gap-2">
+                  <span className="truncate text-gray-400 font-medium">
+                    coverletter_back_end_developer.pdf
+                  </span>
+                  <span className="flex-shrink-0 text-gray-400">4.5mb</span>
+                </div>
+              </div>
+              <div className="ml-4 flex-shrink-0">
+                <a
+                  href="#"
+                  className="font-medium text-red-400 hover:text-indigo-300"
+                >
+                  Remove
+                </a>
+              </div>
+            </li>
+          </ul>
         </div>
       </Container>
       <Container>
@@ -56,6 +107,13 @@ export default function Home() {
               defaultValue={""}
             />
           </div>
+        </div>
+      </Container>
+      <Container>
+        <Heading>Good afternoon, Erica</Heading>
+        <div className="mt-8 flex items-end justify-between">
+          <Subheading>Overview</Subheading>
+          <div></div>
         </div>
       </Container>
     </>
