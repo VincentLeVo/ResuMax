@@ -3,6 +3,188 @@ import { Container } from "@/components/Container";
 import { PaperClipIcon } from "@heroicons/react/24/solid";
 import { Heading, Subheading } from "@/components/Text";
 import clsx from "clsx";
+
+function Summary() {
+  return (
+    <div className="flex justify-between items-center py-4 border-b border-gray-200">
+      <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-2">
+          <span className="text-lg font-semibold">Resume Status:</span>
+          <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
+            Optimized
+          </span>
+        </div>
+        <div className="flex items-center space-x-2">
+          <div className="relative">
+            <div className="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center text-lg font-bold">
+              85%
+            </div>
+            <div className="absolute top-0 right-0">
+              <span className="text-gray-400 cursor-pointer">?</span>
+              <div className="tooltip text-sm p-2 bg-gray-200 text-gray-700 rounded">
+                This score reflects the match between your resume and the
+                uploaded job description.
+              </div>
+            </div>
+          </div>
+          <span className="text-lg font-semibold">Match Score: 85%</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function KeyMetrics() {
+  return (
+    <div className="mt-6">
+      <h2 className="text-lg font-semibold mb-4">Keywords Match</h2>
+      <div className="bg-gray-100 rounded-lg p-4">
+        <table className="table-auto w-full">
+          <thead>
+            <tr className="text-left">
+              <th className="py-2">Keyword</th>
+              <th className="py-2">Match %</th>
+              <th className="py-2">Suggestions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td className="py-2">Leadership</td>
+              <td className="py-2 text-yellow-600">75%</td>
+              <td className="py-2">Consider elaborating</td>
+            </tr>
+            <tr>
+              <td className="py-2">Agile</td>
+              <td className="py-2 text-red-600">50%</td>
+              <td className="py-2">Missing, please add</td>
+            </tr>
+            <tr>
+              <td className="py-2">Communication</td>
+              <td className="py-2 text-green-600">90%</td>
+              <td className="py-2">Great job!</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
+function Analysis() {
+  return (
+    <div>
+      <div className="mt-6">
+        <h2 className="text-lg font-semibold mb-4">Resume Breakdown</h2>
+        <div className="bg-gray-100 rounded-lg p-4">
+          <div className="mb-4">
+            <div className="flex justify-between mb-2">
+              <span>Skills: 80%</span>
+              <span>80%</span>
+            </div>
+            <div className="w-full bg-gray-200 h-2 rounded-full">
+              <div
+                className="bg-green-500 h-2 rounded-full"
+                style={{ width: "80%" }}
+              ></div>
+            </div>
+          </div>
+
+          <div className="mb-4">
+            <div className="flex justify-between mb-2">
+              <span>Experience: 70%</span>
+              <span>70%</span>
+            </div>
+            <div className="w-full bg-gray-200 h-2 rounded-full">
+              <div
+                className="bg-yellow-500 h-2 rounded-full"
+                style={{ width: "70%" }}
+              ></div>
+            </div>
+          </div>
+
+          <div className="mb-4">
+            <div className="flex justify-between mb-2">
+              <span>Education: 90%</span>
+              <span>90%</span>
+            </div>
+            <div className="w-full bg-gray-200 h-2 rounded-full">
+              <div
+                className="bg-green-500 h-2 rounded-full"
+                style={{ width: "90%" }}
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Personalized Suggestions */}
+      <div className="mt-6">
+        <h2 className="text-lg font-semibold mb-4">Personalized Suggestions</h2>
+        <div className="bg-gray-100 rounded-lg p-4">
+          <div className="flex space-x-4">
+            <div className="flex items-center space-x-2 bg-white p-4 rounded-lg shadow-md">
+              <span className="text-gray-600">
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 4v16m8-8H4"
+                  />
+                </svg>
+              </span>
+              <div>
+                <p>Add more technical keywords to match the job</p>
+                <span className="text-sm text-yellow-600">High Priority</span>
+              </div>
+            </div>
+
+            <div className="flex items-center space-x-2 bg-white p-4 rounded-lg shadow-md">
+              <span className="text-gray-600">
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 4v16m8-8H4"
+                  />
+                </svg>
+              </span>
+              <div>
+                <p>Consider expanding leadership roles</p>
+                <span className="text-sm text-yellow-600">Medium Priority</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Resume Strengths */}
+      <div className="mt-6">
+        <h2 className="text-lg font-semibold mb-4">Resume Strengths</h2>
+        <div className="bg-gray-100 rounded-lg p-4">
+          <p className="text-green-600">
+            ✔ Your resume has strong industry-specific keywords. Continue
+            focusing on project experience.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <>
@@ -114,6 +296,26 @@ export default function Home() {
         <div className="mt-8 flex items-end justify-between">
           <Subheading>Overview</Subheading>
           <div></div>
+        </div>
+      </Container>
+      <Container>
+        <div className="flex flex-col">
+          <div className="mx-auto w-full max-w-7xl grow lg:flex xl:px-2">
+            {/* Left sidebar & main wrapper */}
+            <div className="flex-1 xl:flex">
+              <div className="border-b border-gray-200 px-4 py-6 sm:px-6 lg:pl-8 xl:w-64 xl:shrink-0 xl:border-b-0 xl:border-r xl:pl-6">
+                <Summary />
+              </div>
+
+              <div className="px-4 py-6 sm:px-6 lg:pl-8 xl:flex-1 xl:pl-6">
+                <KeyMetrics />
+              </div>
+            </div>
+
+            <div className="shrink-0 border-t border-gray-200 px-4 py-6 sm:px-6 lg:w-96 lg:border-l lg:border-t-0 lg:pr-8 xl:pr-6">
+              <Analysis />
+            </div>
+          </div>
         </div>
       </Container>
     </>
