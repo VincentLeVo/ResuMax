@@ -1,9 +1,10 @@
 import Image from "next/image";
 import { Container } from "@/components/Container";
 import { PaperClipIcon } from "@heroicons/react/24/solid";
-import { Heading, Subheading } from "@/components/Text";
 import clsx from "clsx";
 import { Badge } from "@/components/Badge";
+import { KeyTerm } from "@/components/KeyTerm";
+import { Heading, Subheading } from "@/components/Text";
 
 function Summary() {
   return (
@@ -41,19 +42,19 @@ function Summary() {
 
 function KeyMetrics() {
   return (
-    <div className="mt-6">
-      <h2 className="text-lg font-semibold mb-4">Keywords Match</h2>
+    <div>
+      <Subheading>Keyword Match</Subheading>
       <div className=" rounded-lg p-4">
-        <table className="table-auto mt-6  whitespace-nowrap text-left w-full">
-          <thead className="border-b border-white/10 text-sm leading-6 text-white">
+        <table className="table-auto mt-3 whitespace-nowrap text-left w-full min-w-full text-sm/6 text-white">
+          <thead className=" text-zinc-400">
             <tr className="text-left">
-              <th className="px-3 py-4 text-left text-sm font-semibold text-white">
+              <th className="border-b border-b-zinc-950/10 px-3 py-4 font-medium first:pl-[var(--gutter,theme(spacing.2))] last:pr-[var(--gutter,theme(spacing.2))] dark:border-b-white/10">
                 Keyword
               </th>
-              <th className="px-3 py-4 text-left text-sm font-semibold text-white ">
+              <th className="border-b border-b-zinc-950/10 px-3 py-4 font-medium first:pl-[var(--gutter,theme(spacing.2))] last:pr-[var(--gutter,theme(spacing.2))] dark:border-b-white/10 ">
                 Match %
               </th>
-              <th className="px-3 py-4 text-left text-sm font-semibold text-white ">
+              <th className="border-b border-b-zinc-950/10 px-3 py-4 font-medium first:pl-[var(--gutter,theme(spacing.2))] last:pr-[var(--gutter,theme(spacing.2))] dark:border-b-white/10 ">
                 Suggestions
               </th>
             </tr>
@@ -61,36 +62,34 @@ function KeyMetrics() {
           <tbody className="divide-y divide-white/5">
             <tr>
               <td className="whitespace-nowrap px-3 py-4 text-base font-bold text-white">
-                <Badge color="blue" size="large">
-                  Leadership
-                </Badge>
+                <KeyTerm>Leadership</KeyTerm>
               </td>
-              <td className="whitespace-nowrap px-3 py-4 text-sm  text-yellow-400">
-                75%
+              <td className="whitespace-nowrap px-3 py-4">
+                <Badge color="yellow">75%</Badge>
               </td>
-              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
+              <td className="whitespace-nowrap px-3 py-4 text-sm ">
                 Consider elaborating
               </td>
             </tr>
             <tr>
               <td className="whitespace-nowrap px-3 py-4 text-base font-bold  text-gray-300">
-                Agile
+                <KeyTerm>Agile</KeyTerm>
               </td>
-              <td className="whitespace-nowrap px-3 py-4 text-sm  text-red-400">
-                50%
+              <td className="whitespace-nowrap px-3 py-4">
+                <Badge color="red">50%</Badge>
               </td>
-              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
+              <td className="whitespace-nowrap px-3 py-4 text-sm ">
                 Missing, please add
               </td>
             </tr>
             <tr>
               <td className="whitespace-nowrap px-3 py-4 text-base font-bold text-gray-300">
-                Communication
+                <KeyTerm>Communication</KeyTerm>
               </td>
-              <td className="whitespace-nowrap px-3 py-4 text-sm  text-green-400">
-                90%
+              <td className="whitespace-nowrap px-3 py-4">
+                <Badge color="green">90%</Badge>
               </td>
-              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
+              <td className="whitespace-nowrap px-3 py-4 text-sm ">
                 Great job!
               </td>
             </tr>
@@ -101,58 +100,56 @@ function KeyMetrics() {
   );
 }
 
+function ResumeBreakdown() {
+  return (
+    <div>
+      <Subheading>Resume Breakdown</Subheading>
+      <dl className="mt-8 grid grid-cols-1 divide-y divide-white/10 overflow-hidden rounded-lg  shadow ">
+        <div className="px-4 border-t border-white/10 py-5 sm:p-6">
+          <dt className="text-md font-semibold text-white  mb-2">
+            Skills: 80%
+          </dt>
+          <dd className="w-full bg-green-400/10">
+            <div
+              className="bg-green-400 h-2 rounded-full"
+              style={{ width: "80%" }}
+            ></div>
+          </dd>
+        </div>
+        <div className="px-4 border-t border-white/10 py-5 sm:p-6">
+          <dt className="text-md font-semibold text-white  mb-2">
+            Experience: 70%
+          </dt>
+          <dd className="w-full bg-yellow-400/10">
+            <div
+              className="bg-yellow-500 h-2 rounded-full"
+              style={{ width: "70%" }}
+            ></div>
+          </dd>
+        </div>
+        <div className="px-4 border-t border-white/10 py-5 sm:p-6">
+          <dt className="text-md font-semibold text-white  mb-2">
+            Education: 90%
+          </dt>
+          <dd className="w-full bg-green-400/10">
+            <div
+              className="bg-green-400 h-2 rounded-full"
+              style={{ width: "90%" }}
+            ></div>
+          </dd>
+        </div>
+      </dl>
+    </div>
+  );
+}
+
 function Analysis() {
   return (
     <div>
-      <div className="mt-6">
-        <h2 className="text-lg font-semibold mb-4">Resume Breakdown</h2>
-        <div className="bg-gray-100 rounded-lg p-4">
-          <div className="mb-4">
-            <div className="flex justify-between mb-2">
-              <span>Skills: 80%</span>
-              <span>80%</span>
-            </div>
-            <div className="w-full bg-gray-200 h-2 rounded-full">
-              <div
-                className="bg-green-500 h-2 rounded-full"
-                style={{ width: "80%" }}
-              ></div>
-            </div>
-          </div>
-
-          <div className="mb-4">
-            <div className="flex justify-between mb-2">
-              <span>Experience: 70%</span>
-              <span>70%</span>
-            </div>
-            <div className="w-full bg-gray-200 h-2 rounded-full">
-              <div
-                className="bg-yellow-500 h-2 rounded-full"
-                style={{ width: "70%" }}
-              ></div>
-            </div>
-          </div>
-
-          <div className="mb-4">
-            <div className="flex justify-between mb-2">
-              <span>Education: 90%</span>
-              <span>90%</span>
-            </div>
-            <div className="w-full bg-gray-200 h-2 rounded-full">
-              <div
-                className="bg-green-500 h-2 rounded-full"
-                style={{ width: "90%" }}
-              ></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Personalized Suggestions */}
-      <div className="mt-6">
-        <h2 className="text-lg font-semibold mb-4">Personalized Suggestions</h2>
-        <div className="bg-gray-100/20 rounded-lg p-4">
-          <div className="flex space-x-4">
+      <div className="bg-gray-100/20">
+        <Subheading>Personalized Suggestions</Subheading>
+        <div className="mt-8">
+          <div className="flex flex-col gap-2">
             <div className="flex items-center space-x-2 bg-white/10 p-4 rounded-lg shadow-md">
               <span className="text-gray-600">
                 <svg
@@ -344,6 +341,7 @@ export default function Home() {
             </div>
 
             <div className="shrink-0 border-t border-gray-200 px-4 py-6 sm:px-6 lg:w-96 lg:border-l lg:border-t-0 lg:pr-8 xl:pr-6">
+              <ResumeBreakdown />
               <Analysis />
             </div>
           </div>

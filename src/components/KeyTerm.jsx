@@ -31,7 +31,7 @@ const colors = {
     "bg-fuchsia-400/15 text-fuchsia-700 group-data-[hover]:bg-fuchsia-400/25 dark:bg-fuchsia-400/10 dark:text-fuchsia-400 dark:group-data-[hover]:bg-fuchsia-400/20",
   pink: "bg-pink-400/15 text-pink-700 group-data-[hover]:bg-pink-400/25 dark:bg-pink-400/10 dark:text-pink-400 dark:group-data-[hover]:bg-pink-400/20",
   rose: "bg-rose-400/15 text-rose-700 group-data-[hover]:bg-rose-400/25 dark:bg-rose-400/10 dark:text-rose-400 dark:group-data-[hover]:bg-rose-400/20",
-  zinc: "bg-zinc-600/10 text-zinc-700 group-data-[hover]:bg-zinc-600/20 dark:bg-white/5 dark:text-zinc-400 dark:group-data-[hover]:bg-white/10",
+  zinc: "border border-zinc-100/20 bg-zinc-600/10 text-zinc-700 group-data-[hover]:bg-zinc-600/20  dark:bg-white/5 dark:text-zinc-100 dark:group-data-[hover]:bg-white/10",
 };
 
 export function KeyTerm({ color = "zinc", className, ...props }) {
@@ -41,7 +41,7 @@ export function KeyTerm({ color = "zinc", className, ...props }) {
       className={clsx(
         className,
         "inline-flex items-center gap-x-1.5 rounded-md font-medium forced-colors:outline",
-        "px-3 py-2 text-lg/5",
+        "px-2 py-1 text-md/5",
         colors[color]
       )}
     />
