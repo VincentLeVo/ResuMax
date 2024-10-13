@@ -20,7 +20,7 @@ const colors = {
   teal: "bg-teal-500/15 text-teal-700 group-data-[hover]:bg-teal-500/25 dark:bg-teal-500/10 dark:text-teal-300 dark:group-data-[hover]:bg-teal-500/20",
   cyan: "bg-cyan-400/20 text-cyan-700 group-data-[hover]:bg-cyan-400/30 dark:bg-cyan-400/10 dark:text-cyan-300 dark:group-data-[hover]:bg-cyan-400/15",
   sky: "bg-sky-500/15 text-sky-700 group-data-[hover]:bg-sky-500/25 dark:bg-sky-500/10 dark:text-sky-300 dark:group-data-[hover]:bg-sky-500/20",
-  blue: "bg-blue-500/15 text-blue-300 group-data-[hover]:bg-blue-500/25",
+  blue: "bg-blue-500/15 text-blue-600 group-data-[hover]:bg-blue-500/25 dark:text-blue-400 dark:group-data-[hover]:bg-blue-500/25",
   indigo:
     "bg-indigo-500/15 text-indigo-700 group-data-[hover]:bg-indigo-500/25 dark:text-indigo-400 dark:group-data-[hover]:bg-indigo-500/20",
   violet:
@@ -34,41 +34,16 @@ const colors = {
   zinc: "bg-zinc-600/10 text-zinc-700 group-data-[hover]:bg-zinc-600/20 dark:bg-white/5 dark:text-zinc-400 dark:group-data-[hover]:bg-white/10",
 };
 
-export function Badge({ color = "zinc", size = "small", className, ...props }) {
+export function KeyTerm({ color = "zinc", className, ...props }) {
   return (
     <span
       {...props}
       className={clsx(
         className,
-        "inline-flex items-center gap-x-1.5 rounded-md  font-medium forced-colors:outline",
-        size === "small" ? "px-1.5 py-0.5 text-sm/5" : "px-3 py-2 text-lg/5",
+        "inline-flex items-center gap-x-1.5 rounded-md font-medium forced-colors:outline",
+        "px-3 py-2 text-lg/5",
         colors[color]
       )}
     />
   );
 }
-
-export const BadgeButton = forwardRef(function BadgeButton(
-  { color = "zinc", className, children, ...props },
-
-  ref
-) {
-  let classes = clsx(
-    className,
-    "group relative inline-flex rounded-md focus:outline-none data-[focus]:outline data-[focus]:outline-2 data-[focus]:outline-offset-2 data-[focus]:outline-blue-500"
-  );
-
-  return "href" in props ? (
-    <Link {...props} className={classes} ref={ref}>
-      <TouchTarget>
-        <Badge color={color}>{children}</Badge>
-      </TouchTarget>
-    </Link>
-  ) : (
-    <Headless.Button {...props} className={classes} ref={ref}>
-      <TouchTarget>
-        <Badge color={color}>{children}</Badge>
-      </TouchTarget>
-    </Headless.Button>
-  );
-});

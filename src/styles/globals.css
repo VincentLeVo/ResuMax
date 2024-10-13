@@ -8,8 +8,8 @@
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
+  color: var(--background);
+  background: var(--foreground);
 }
 
 @layer utilities {

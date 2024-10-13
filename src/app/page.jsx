@@ -3,22 +3,28 @@ import { Container } from "@/components/Container";
 import { PaperClipIcon } from "@heroicons/react/24/solid";
 import { Heading, Subheading } from "@/components/Text";
 import clsx from "clsx";
+import { Badge } from "@/components/Badge";
 
 function Summary() {
   return (
     <div className="flex justify-between items-center py-4 border-b border-gray-200">
-      <div className="flex items-center space-x-4">
-        <div className="flex items-center space-x-2">
-          <span className="text-lg font-semibold">Resume Status:</span>
-          <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
+      <div className="flex flex-col gap-7">
+        <div className="border-t border-white/10">
+          <div className="text-md/6 mt-6 mb-2  font-semibold">
+            Resume Status:
+          </div>
+          <Badge color="green" size="large">
             Optimized
-          </span>
+          </Badge>
         </div>
-        <div className="flex items-center space-x-2">
+        <div className="flex border-t border-white/10 flex-col mb-5 ">
+          <div className="text-md mt-6 mb-2 font-semibold">Match Score:</div>
+          <div className="w-24 h-24 rounded-full bg-green-500/10 dark:text-green-400 flex items-center justify-center text-2xl font-bold">
+            85%
+          </div>
+        </div>
+        <div className="flex items-center">
           <div className="relative">
-            <div className="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center text-lg font-bold">
-              85%
-            </div>
             <div className="absolute top-0 right-0">
               <span className="text-gray-400 cursor-pointer">?</span>
               <div className="tooltip text-sm p-2 bg-gray-200 text-gray-700 rounded">
@@ -27,7 +33,6 @@ function Summary() {
               </div>
             </div>
           </div>
-          <span className="text-lg font-semibold">Match Score: 85%</span>
         </div>
       </div>
     </div>
@@ -38,30 +43,56 @@ function KeyMetrics() {
   return (
     <div className="mt-6">
       <h2 className="text-lg font-semibold mb-4">Keywords Match</h2>
-      <div className="bg-gray-100 rounded-lg p-4">
-        <table className="table-auto w-full">
-          <thead>
+      <div className=" rounded-lg p-4">
+        <table className="table-auto mt-6  whitespace-nowrap text-left w-full">
+          <thead className="border-b border-white/10 text-sm leading-6 text-white">
             <tr className="text-left">
-              <th className="py-2">Keyword</th>
-              <th className="py-2">Match %</th>
-              <th className="py-2">Suggestions</th>
+              <th className="px-3 py-4 text-left text-sm font-semibold text-white">
+                Keyword
+              </th>
+              <th className="px-3 py-4 text-left text-sm font-semibold text-white ">
+                Match %
+              </th>
+              <th className="px-3 py-4 text-left text-sm font-semibold text-white ">
+                Suggestions
+              </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="divide-y divide-white/5">
             <tr>
-              <td className="py-2">Leadership</td>
-              <td className="py-2 text-yellow-600">75%</td>
-              <td className="py-2">Consider elaborating</td>
+              <td className="whitespace-nowrap px-3 py-4 text-base font-bold text-white">
+                <Badge color="blue" size="large">
+                  Leadership
+                </Badge>
+              </td>
+              <td className="whitespace-nowrap px-3 py-4 text-sm  text-yellow-400">
+                75%
+              </td>
+              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
+                Consider elaborating
+              </td>
             </tr>
             <tr>
-              <td className="py-2">Agile</td>
-              <td className="py-2 text-red-600">50%</td>
-              <td className="py-2">Missing, please add</td>
+              <td className="whitespace-nowrap px-3 py-4 text-base font-bold  text-gray-300">
+                Agile
+              </td>
+              <td className="whitespace-nowrap px-3 py-4 text-sm  text-red-400">
+                50%
+              </td>
+              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
+                Missing, please add
+              </td>
             </tr>
             <tr>
-              <td className="py-2">Communication</td>
-              <td className="py-2 text-green-600">90%</td>
-              <td className="py-2">Great job!</td>
+              <td className="whitespace-nowrap px-3 py-4 text-base font-bold text-gray-300">
+                Communication
+              </td>
+              <td className="whitespace-nowrap px-3 py-4 text-sm  text-green-400">
+                90%
+              </td>
+              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
+                Great job!
+              </td>
             </tr>
           </tbody>
         </table>
@@ -120,9 +151,9 @@ function Analysis() {
       {/* Personalized Suggestions */}
       <div className="mt-6">
         <h2 className="text-lg font-semibold mb-4">Personalized Suggestions</h2>
-        <div className="bg-gray-100 rounded-lg p-4">
+        <div className="bg-gray-100/20 rounded-lg p-4">
           <div className="flex space-x-4">
-            <div className="flex items-center space-x-2 bg-white p-4 rounded-lg shadow-md">
+            <div className="flex items-center space-x-2 bg-white/10 p-4 rounded-lg shadow-md">
               <span className="text-gray-600">
                 <svg
                   className="w-6 h-6"
@@ -145,7 +176,7 @@ function Analysis() {
               </div>
             </div>
 
-            <div className="flex items-center space-x-2 bg-white p-4 rounded-lg shadow-md">
+            <div className="flex items-center space-x-2 bg-white/10 p-4 rounded-lg shadow-md">
               <span className="text-gray-600">
                 <svg
                   className="w-6 h-6"
