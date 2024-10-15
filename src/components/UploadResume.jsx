@@ -14,11 +14,39 @@ export function UploadResume() {
   const [error, setError] = useState("");
   const router = useRouter();
 
-  const handleSubmit = (e) => {
+  async function handleSubmit(e) {
     e.preventDefault();
 
-    console.log("Hello");
-  };
+    if (!resumeFile) {
+      setError("Please upload your resume.");
+      return;
+    }
+
+    try {
+      const formData = new FormData();
+      formData.append("resume", resumeFile);
+      formData.append("jobDescription", jobDescription);
+      console.log("jobDescription", jobDescription);
+      console.log("formData", formData);
+    } catch (error) {
+      setError(error.message);
+    }
+  }
+
+  async function handleFileChange(e) {
+    const file = e.target.files[0];
+    if (!file) {
+      return;
+    }
+
+    if (file.size > MAX_FILE_SIZE) {
+      setError("File size is too large. Please upload a file up to 10MB.");
+      return;
+    }
+
+    setResumeFile(file);
+    console.log("file", file);
+  }
 
   return (
     <Container>
@@ -46,6 +74,7 @@ export function UploadResume() {
                   id="file-upload"
                   name="file-upload"
                   type="file"
+                  onChange={handleFileChange}
                   className="sr-only"
                 />
               </label>
@@ -67,31 +96,9 @@ export function UploadResume() {
                 />
                 <div className="ml-4 flex min-w-0 flex-1 gap-2">
                   <span className="truncate text-gray-400 font-medium">
-                    resume_back_end_developer.pdf
+                    {resumeFile && resumeFile.name}
                   </span>
                   <span className="flex-shrink-0 text-gray-400">2.4mb</span>
-                </div>
-              </div>
-              <div className="ml-4 flex-shrink-0">
-                <a
-                  href="#"
-                  className="font-medium text-red-400 hover:text-indigo-300"
-                >
-                  Remove
-                </a>
-              </div>
-            </li>
-            <li className="flex items-center justify-between py-4 pl-4 pr-5 text-sm leading-6">
-              <div className="flex w-0 flex-1 items-center">
-                <PaperClipIcon
-                  aria-hidden="true"
-                  className="h-5 w-5 flex-shrink-0 text-gray-400"
-                />
-                <div className="ml-4 flex min-w-0 flex-1 gap-2">
-                  <span className="truncate text-gray-400 font-medium">
-                    coverletter_back_end_developer.pdf
-                  </span>
-                  <span className="flex-shrink-0 text-gray-400">4.5mb</span>
                 </div>
               </div>
               <div className="ml-4 flex-shrink-0">
