@@ -255,29 +255,10 @@ function Strengths() {
   );
 }
 
-function OptionalJobDescription() {
-  return (
-    <Container>
-      <div>
-        <label
-          htmlFor="comment"
-          className="block text-xs/6 font-medium leading-6 text-zinc-400"
-        >
-          Optional: Write in your Job Description.
-        </label>
-        <div className="mt-2">
-          <Textarea id="comment" name="comment" rows={4} defaultValue={""} />
-        </div>
-      </div>
-    </Container>
-  );
-}
-
 export default function Home() {
   return (
     <>
       <UploadResume />
-      <OptionalJobDescription />
       <Container>
         <Heading>Good afternoon, Erica</Heading>
         <div className="mt-8 flex items-end justify-between">
