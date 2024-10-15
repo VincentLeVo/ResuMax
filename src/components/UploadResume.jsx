@@ -124,12 +124,16 @@ export function UploadResume() {
                   </div>
                 </div>
                 <div className="ml-4 flex-shrink-0">
-                  <a
+                  <Button
                     href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setResumeFile(null);
+                    }}
                     className="font-medium text-red-400 hover:text-indigo-300"
                   >
                     Remove
-                  </a>
+                  </Button>
                 </div>
               </li>
             </ul>

@@ -8,8 +8,9 @@ import {
   MenuItems,
 } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import clsx from "clsx";
+import { Link } from "@/components/Link";
 
+import clsx from "clsx";
 const user = {
   name: "Tom Cook",
   email: "tom@example.com",
@@ -48,16 +49,18 @@ export function Navbar({ children }) {
                 <div className="flex h-16 items-center justify-between px-4 sm:px-0">
                   <div className="flex items-center">
                     <div className="flex-shrink-0">
-                      <img
-                        alt="Your Company"
-                        src="/logos/logoipsum-311.svg"
-                        className="h-16 w-16"
-                      />
+                      <Link href="/">
+                        <img
+                          alt="Your Company"
+                          src="/logos/logoipsum-311.svg"
+                          className="h-16 w-16"
+                        />
+                      </Link>
                     </div>
                     <div className="hidden md:block">
                       <div className="ml-10 flex items-baseline space-x-4">
                         {navigation.map((item) => (
-                          <a
+                          <Link
                             key={item.name}
                             href={item.href}
                             aria-current={item.current ? "page" : undefined}
@@ -69,7 +72,7 @@ export function Navbar({ children }) {
                             )}
                           >
                             {item.name}
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     </div>
@@ -95,12 +98,12 @@ export function Navbar({ children }) {
                         >
                           {userNavigation.map((item) => (
                             <MenuItem key={item.name}>
-                              <a
+                              <Link
                                 href={item.href}
                                 className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100"
                               >
                                 {item.name}
-                              </a>
+                              </Link>
                             </MenuItem>
                           ))}
                         </MenuItems>
