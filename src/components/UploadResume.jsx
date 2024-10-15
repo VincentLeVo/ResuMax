@@ -4,7 +4,8 @@ import { PaperClipIcon } from "@heroicons/react/24/solid";
 import clsx from "clsx";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { OptionalJobDescription } from "./OptionalJobDescription";
+import { OptionalJobDescription } from "@/components/OptionalJobDescription";
+import { Button } from "@/components/Button";
 
 const MAX_FILE_SIZE = 10485760; // 10MB in bytes
 
@@ -42,7 +43,7 @@ export function UploadResume() {
         });
 
         // Redirect to the Resume Suggestions page with query params
-        router.push(`/resume-suggestions?${queryParams.toString()}`);
+        router.push(`/resume-analysis?${queryParams.toString()}`);
       } else {
         setError("Error processing resume.");
       }
@@ -138,12 +139,9 @@ export function UploadResume() {
           jobDescription={jobDescription}
           setJobDescription={setJobDescription}
         />
-        <button
-          type="submit"
-          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-        >
+        <Button type="submit" className="mt-4">
           Submit
-        </button>
+        </Button>
       </form>
     </Container>
   );
