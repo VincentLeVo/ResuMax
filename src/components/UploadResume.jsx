@@ -18,18 +18,33 @@ export function UploadResume() {
     e.preventDefault();
 
     if (!resumeFile) {
-      setError("Please upload your resume.");
-      return;
+      return setError("Please upload a resume.");
     }
 
     try {
       const formData = new FormData();
       formData.append("resume", resumeFile);
-      formData.append("jobDescription", jobDescription);
-      console.log("jobDescription", jobDescription);
-      console.log("formData", formData);
-    } catch (error) {
-      setError(error.message);
+      console.log("This is the form data resumeFile", resumeFile);
+      if (jobDescription) formData.append("jobDescription", jobDescription);
+      console.log("This is the form data from react", formData);
+      const response = await fetch("/api/resume", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error("Error processing the resume.");
+      }
+
+      const result = await response.json();
+      router.push(
+        `/resume-suggestions?result=${encodeURIComponent(
+          JSON.stringify(result)
+        )}`
+      );
+    } catch (err) {
+      console.error(err);
+      setError("An error occurred while submitting the form.");
     }
   }
 
@@ -45,7 +60,6 @@ export function UploadResume() {
     }
 
     setResumeFile(file);
-    console.log("file", file);
   }
 
   return (
@@ -84,33 +98,37 @@ export function UploadResume() {
               PDF File Up To 10MB
             </p>
           </div>
-          <ul
-            role="list"
-            className="divide-y mt-3 divide-white/10 rounded-md border border-white/20"
-          >
-            <li className="flex items-center justify-between py-4 pl-4 pr-5 text-sm leading-6">
-              <div className="flex w-0 flex-1 items-center">
-                <PaperClipIcon
-                  aria-hidden="true"
-                  className="h-5 w-5 flex-shrink-0 text-gray-400"
-                />
-                <div className="ml-4 flex min-w-0 flex-1 gap-2">
-                  <span className="truncate text-gray-400 font-medium">
-                    {resumeFile && resumeFile.name}
-                  </span>
-                  <span className="flex-shrink-0 text-gray-400">2.4mb</span>
+          {resumeFile && (
+            <ul
+              role="list"
+              className="divide-y mt-3 divide-white/10 rounded-md border border-white/20"
+            >
+              <li className="flex items-center justify-between py-4 pl-4 pr-5 text-sm leading-6">
+                <div className="flex w-0 flex-1 items-center">
+                  <PaperClipIcon
+                    aria-hidden="true"
+                    className="h-5 w-5 flex-shrink-0 text-gray-400"
+                  />
+                  <div className="ml-4 flex min-w-0 flex-1 gap-2">
+                    <span className="truncate text-gray-400 font-medium">
+                      {resumeFile && resumeFile.name}
+                    </span>
+                    <span className="flex-shrink-0 text-gray-400">
+                      {(resumeFile.size / (1024 * 1024)).toFixed(2)} MB
+                    </span>
+                  </div>
                 </div>
-              </div>
-              <div className="ml-4 flex-shrink-0">
-                <a
-                  href="#"
-                  className="font-medium text-red-400 hover:text-indigo-300"
-                >
-                  Remove
-                </a>
-              </div>
-            </li>
-          </ul>
+                <div className="ml-4 flex-shrink-0">
+                  <a
+                    href="#"
+                    className="font-medium text-red-400 hover:text-indigo-300"
+                  >
+                    Remove
+                  </a>
+                </div>
+              </li>
+            </ul>
+          )}
         </div>
         <OptionalJobDescription
           jobDescription={jobDescription}
