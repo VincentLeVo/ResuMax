@@ -18,7 +18,7 @@ export const priorityStyles = {
 export function getProgressBarColor(percentage) {
   if (percentage > 75) {
     return "green";
-  } else if (percentage >= 45) {
+  } else if (percentage >= 45 && percentage <= 74) {
     return "yellow";
   } else {
     return "red";

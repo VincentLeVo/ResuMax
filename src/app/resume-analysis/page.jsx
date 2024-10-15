@@ -10,7 +10,7 @@ import { KeyTerm } from "@/components/KeyTerm";
 import { Heading, Subheading } from "@/components/Text";
 import { PencilIcon, PlusIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import { Divider } from "@/components/Divider";
-import { getBadgeDetails } from "@/utils/statusUtils";
+import { getBadgeDetails, getProgressBarColor } from "@/utils/statusUtils";
 
 function Summary() {
   let matchScore = 85; // Replace this with the actual match score
@@ -126,43 +126,35 @@ function KeyTermsMetrics() {
 }
 
 function ResumeBreakdown() {
+  const breakdowns = [
+    { title: "Skills", percentage: 80 },
+    { title: "Experience", percentage: 70 },
+    { title: "Education", percentage: 90 },
+  ];
+
   return (
     <div>
       <Subheading>Resume Breakdown</Subheading>
       <dl className="mt-3 grid grid-cols-1 divide-y divide-white/10 overflow-hidden rounded-lg  shadow ">
-        <div className="px-4 border-t border-white/10 py-5 sm:p-6">
-          <dt className="text-md font-semibold text-white  mb-2">
-            Skills: 80%
-          </dt>
-          <dd className="w-full bg-green-400/10">
+        {breakdowns.map((breakdown, index) => {
+          const color = getProgressBarColor(breakdown.percentage);
+          return (
             <div
-              className="bg-green-400 h-2 rounded-full"
-              style={{ width: "80%" }}
-            ></div>
-          </dd>
-        </div>
-        <div className="px-4 border-t border-white/10 py-5 sm:p-6">
-          <dt className="text-md font-semibold text-white  mb-2">
-            Experience: 70%
-          </dt>
-          <dd className="w-full bg-yellow-400/10">
-            <div
-              className="bg-yellow-500 h-2 rounded-full"
-              style={{ width: "70%" }}
-            ></div>
-          </dd>
-        </div>
-        <div className="px-4 border-t border-white/10 py-5 sm:p-6">
-          <dt className="text-md font-semibold text-white  mb-2">
-            Education: 90%
-          </dt>
-          <dd className="w-full bg-green-400/10">
-            <div
-              className="bg-green-400 h-2 rounded-full"
-              style={{ width: "90%" }}
-            ></div>
-          </dd>
-        </div>
+              key={index}
+              className="px-4 border-t border-white/10 py-5 sm:p-6"
+            >
+              <dt className="text-md font-semibold text-white mb-2">
+                {breakdown.title}: {breakdown.percentage}%
+              </dt>
+              <dd className="w-full bg-white/10">
+                <div
+                  className={`bg-${color}-400 h-2 rounded-full`}
+                  style={{ width: `${breakdown.percentage}%` }}
+                ></div>
+              </dd>
+            </div>
+          );
+        })}
       </dl>
     </div>
   );
