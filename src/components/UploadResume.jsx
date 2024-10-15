@@ -14,7 +14,8 @@ export function UploadResume() {
   const [error, setError] = useState("");
   const router = useRouter();
 
-  async function handleSubmit(e) {
+  // Handle form submission
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!resumeFile) {
@@ -24,29 +25,32 @@ export function UploadResume() {
     try {
       const formData = new FormData();
       formData.append("resume", resumeFile);
-      console.log("This is the form data resumeFile", resumeFile);
-      if (jobDescription) formData.append("jobDescription", jobDescription);
-      console.log("This is the form data from react", formData);
+      formData.append("jobDescription", jobDescription);
+
+      // Make POST request to the API
       const response = await fetch("/api/resume", {
         method: "POST",
         body: formData,
       });
 
-      if (!response.ok) {
-        throw new Error("Error processing the resume.");
-      }
+      const data = await response.json();
 
-      const result = await response.json();
-      router.push(
-        `/resume-suggestions?result=${encodeURIComponent(
-          JSON.stringify(result)
-        )}`
-      );
+      if (response.ok) {
+        // Correctly format the query parameter string
+        const queryParams = new URLSearchParams({
+          suggestions: JSON.stringify(data.suggestions),
+        });
+
+        // Redirect to the Resume Suggestions page with query params
+        router.push(`/resume-suggestions?${queryParams.toString()}`);
+      } else {
+        setError("Error processing resume.");
+      }
     } catch (err) {
-      console.error(err);
       setError("An error occurred while submitting the form.");
+      console.error(err);
     }
-  }
+  };
 
   async function handleFileChange(e) {
     const file = e.target.files[0];
