@@ -15,7 +15,7 @@ export async function POST(req) {
   try {
     const formData = await req.formData();
     const resumeFile = formData.get("resume"); // Get the uploaded file
-
+    const jobDescription = formData.get("jobDescription"); // Get the job description
     if (!resumeFile) {
       return new Response(JSON.stringify({ error: "No resume uploaded" }), {
         status: 400,
@@ -30,10 +30,29 @@ export async function POST(req) {
     const parsedData = await pdfParse(buffer);
     const resumeText = parsedData.text; // Extracted text from the PDF
 
-    // Log the extracted text for testing purposes
-    console.log("Extracted Resume Text:", resumeText);
+    // Call the OpenAI API to get resume suggestions
+    // Now send the extracted text and job description to OpenAI to generate suggestions
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4", // You can use GPT-4 or GPT-3.5
+      messages: [
+        { role: "system", content: "You are a resume optimization assistant." },
+        {
+          role: "user",
+          content: `Here is a resume: \n\n${resumeText}\n\nBased on this resume, provide up to 7 tailored suggestions for improvement considering the following job description:\n\n${jobDescription}`,
+        },
+      ],
+    });
 
-    return new Response(JSON.stringify({ resumeText }), { status: 200 });
+    const suggestionsText = completion.choices[0].message.content;
+    let suggestionsArray = suggestionsText.split("\n").filter(Boolean); // Split by newline, remove empty entries
+    if (suggestionsArray.length > 7) {
+      suggestionsArray = suggestionsArray.slice(0, 7); // Limit to 7 suggestions
+    }
+
+    // Return the suggestions as an array in the response
+    return new Response(JSON.stringify({ suggestions: suggestionsArray }), {
+      status: 200,
+    });
   } catch (error) {
     console.error("Error processing resume:", error);
     return new Response(
