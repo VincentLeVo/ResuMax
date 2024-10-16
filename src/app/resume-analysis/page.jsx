@@ -2,9 +2,7 @@
 
 import { useSearchParams } from "next/navigation"; // For accessing query parameters from the URL
 import { useEffect, useState } from "react";
-
 import { Container } from "@/components/Container";
-
 import { Badge } from "@/components/Badge";
 import { KeyTerm } from "@/components/KeyTerm";
 import { Heading, Subheading } from "@/components/Text";

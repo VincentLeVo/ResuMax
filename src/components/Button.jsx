@@ -6,9 +6,9 @@ import { Link } from "@/components/Link";
 const styles = {
   base: [
     // Base
-    "relative isolate inline-flex items-center justify-center gap-x-2 rounded-lg border text-base/6 font-semibold",
+    "relative isolate inline-flex items-center justify-center gap-x-2 rounded-2xl border text-base/6 font-semibold",
     // Sizing
-    "px-[calc(theme(spacing[3.5])-1px)] py-[calc(theme(spacing[2.5])-1px)] sm:px-[calc(theme(spacing.3)-1px)] sm:py-[calc(theme(spacing[1.5])-1px)] sm:text-sm/6",
+    "px-4 py-3 sm:px-6 sm:py-4 sm:text-base/6",
     // Focus
     "focus:outline-none data-[focus]:outline data-[focus]:outline-2 data-[focus]:outline-offset-2 data-[focus]:outline-blue-500",
     // Disabled
@@ -36,7 +36,7 @@ const styles = {
     // White overlay on hover
     "after:data-[active]:bg-[--btn-hover-overlay] after:data-[hover]:bg-[--btn-hover-overlay]",
     // Dark mode: `after` layer expands to cover entire button
-    "dark:after:-inset-px dark:after:rounded-lg",
+    "dark:after:-inset-px dark:after:rounded-2xl",
     // Disabled
     "before:data-[disabled]:shadow-none after:data-[disabled]:shadow-none",
   ],

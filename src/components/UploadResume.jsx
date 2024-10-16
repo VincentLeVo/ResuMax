@@ -143,9 +143,11 @@ export function UploadResume() {
           jobDescription={jobDescription}
           setJobDescription={setJobDescription}
         />
-        <Button type="submit" className="mt-4">
-          Submit
-        </Button>
+        <div className="flex justify-center">
+          <Button type="submit" color="blue" className="mt-4">
+            Submit
+          </Button>
+        </div>
       </form>
     </Container>
   );
