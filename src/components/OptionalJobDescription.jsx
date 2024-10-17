@@ -1,5 +1,5 @@
-import { Textarea } from "@/components/Textarea";
-import { Container } from "@/components/Container";
+import { Container } from '@/components/Container'
+import { Textarea } from '@/components/Textarea'
 
 export function OptionalJobDescription({ jobDescription, setJobDescription }) {
   return (
@@ -22,5 +22,5 @@ export function OptionalJobDescription({ jobDescription, setJobDescription }) {
         </div>
       </div>
     </Container>
-  );
+  )
 }
