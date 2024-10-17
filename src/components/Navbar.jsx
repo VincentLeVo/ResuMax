@@ -1,3 +1,4 @@
+import { Link } from '@/components/Link'
 import {
   Disclosure,
   DisclosureButton,
@@ -6,29 +7,28 @@ import {
   MenuButton,
   MenuItem,
   MenuItems,
-} from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { Link } from "@/components/Link";
+} from '@headlessui/react'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
-import clsx from "clsx";
+import clsx from 'clsx'
 const user = {
-  name: "Tom Cook",
-  email: "tom@example.com",
+  name: 'Tom Cook',
+  email: 'tom@example.com',
   imageUrl:
-    "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-};
+    'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+}
 const navigation = [
-  { name: "Dashboard", href: "#", current: true },
-  { name: "NavLink", href: "#", current: false },
-  { name: "NavLink", href: "#", current: false },
-  { name: "NavLink", href: "#", current: false },
-  { name: "NavLink", href: "#", current: false },
-];
+  { name: 'Dashboard', href: '#', current: true },
+  { name: 'NavLink', href: '#', current: false },
+  { name: 'NavLink', href: '#', current: false },
+  { name: 'NavLink', href: '#', current: false },
+  { name: 'NavLink', href: '#', current: false },
+]
 const userNavigation = [
-  { name: "Your Profile", href: "#" },
-  { name: "Settings", href: "#" },
-  { name: "Sign out", href: "#" },
-];
+  { name: 'Your Profile', href: '#' },
+  { name: 'Settings', href: '#' },
+  { name: 'Sign out', href: '#' },
+]
 
 export function Navbar({ children }) {
   return (
@@ -42,10 +42,10 @@ export function Navbar({ children }) {
           ```
         */}
       <div className="min-h-full">
-        <div className="bg-stone-900 pb-32">
-          <Disclosure as="nav" className="bg-stone-800">
+        <div className="bg-zinc-900 pb-32">
+          <Disclosure as="nav" className="bg-zinc-800">
             <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-              <div className="border-b border-stone-700">
+              <div className="border-b border-zinc-700">
                 <div className="flex h-16 items-center justify-between px-4 sm:px-0">
                   <div className="flex items-center">
                     <div className="flex-shrink-0">
@@ -63,12 +63,12 @@ export function Navbar({ children }) {
                           <Link
                             key={item.name}
                             href={item.href}
-                            aria-current={item.current ? "page" : undefined}
+                            aria-current={item.current ? 'page' : undefined}
                             className={clsx(
                               item.current
-                                ? "bg-blue-800 text-white"
-                                : "text-gray-300 hover:bg-blue-700/50 hover:text-white",
-                              "rounded-md px-4 py-3 text-sm font-medium"
+                                ? 'bg-blue-800 text-white'
+                                : 'text-gray-300 hover:bg-blue-700/50 hover:text-white',
+                              'rounded-md px-4 py-3 text-sm font-medium',
                             )}
                           >
                             {item.name}
@@ -136,12 +136,12 @@ export function Navbar({ children }) {
                     key={item.name}
                     as="a"
                     href={item.href}
-                    aria-current={item.current ? "page" : undefined}
+                    aria-current={item.current ? 'page' : undefined}
                     className={clsx(
                       item.current
-                        ? "bg-gray-900 text-white"
-                        : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                      "block rounded-md px-3 py-2 text-base font-medium"
+                        ? 'bg-gray-900 text-white'
+                        : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                      'block rounded-md px-3 py-2 text-base font-medium',
                     )}
                   >
                     {item.name}
@@ -192,12 +192,12 @@ export function Navbar({ children }) {
 
         <main className="-mt-32">
           <div className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
-            <div className="rounded-lg bg-stone-800 px-5 py-6 shadow sm:px-6">
+            <div className="rounded-lg bg-zinc-800 px-5 py-6 shadow sm:px-6">
               {children}
             </div>
           </div>
         </main>
       </div>
     </>
-  );
+  )
 }
