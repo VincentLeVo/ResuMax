@@ -15,7 +15,7 @@ export function UploadResume() {
   const router = useRouter()
 
   // Handle form submission
-  const handleSubmit = async (e) => {
+  async function handleSubmit(e) {
     e.preventDefault()
 
     if (!resumeFile) {
@@ -36,13 +36,14 @@ export function UploadResume() {
       const data = await response.json()
 
       if (response.ok) {
-        const queryParams = new URLSearchParams({
-          suggestions: JSON.stringify(data.suggestions),
-        })
+        // Assuming the API response contains the entire analysis data
+        const analysisData = data
 
-        // Clear any previous error and navigate to suggestions page
+        // Store the analysis data in localStorage
+        localStorage.setItem('analysisData', JSON.stringify(analysisData))
+
         setError('')
-        router.push(`/resume-analysis?${queryParams.toString()}`)
+        router.push('/resume-analysis') // Navigate to the analysis page
       } else {
         setError('Error processing resume.')
       }
