@@ -7,8 +7,6 @@ const styles = {
   base: [
     // Base
     "relative isolate inline-flex items-center justify-center gap-x-2 rounded-2xl border text-base/6 font-semibold",
-    // Sizing
-    "px-4 py-3 sm:px-6 sm:py-4 sm:text-base/6",
     // Focus
     "focus:outline-none data-[focus]:outline data-[focus]:outline-2 data-[focus]:outline-offset-2 data-[focus]:outline-blue-500",
     // Disabled
@@ -16,6 +14,11 @@ const styles = {
     // Icon
     "[&>[data-slot=icon]]:-mx-0.5 [&>[data-slot=icon]]:my-0.5 [&>[data-slot=icon]]:size-5 [&>[data-slot=icon]]:shrink-0 [&>[data-slot=icon]]:text-[--btn-icon] [&>[data-slot=icon]]:sm:my-1 [&>[data-slot=icon]]:sm:size-4 forced-colors:[--btn-icon:ButtonText] forced-colors:data-[hover]:[--btn-icon:ButtonText]",
   ],
+  sizes: {
+    small: "px-3 py-2 text-xs",
+    medium: "px-4 py-3 sm:px-6 sm:py-4 sm:text-base/6",
+    large: "px-6 py-4 sm:px-8 sm:py-5 text-xl",
+  },
   solid: [
     // Optical border, implemented as the button background to avoid corner artifacts
     "border-transparent bg-[--btn-border]",
@@ -159,12 +162,13 @@ const styles = {
 };
 
 export const Button = forwardRef(function Button(
-  { color, outline, plain, className, children, ...props },
+  { color, size = "medium", outline, plain, className, children, ...props },
   ref
 ) {
   let classes = clsx(
     className,
     styles.base,
+    styles.sizes[size],
     outline
       ? styles.outline
       : plain
