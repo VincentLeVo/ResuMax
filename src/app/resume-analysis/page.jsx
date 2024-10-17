@@ -64,7 +64,7 @@ function Summary({ className, ...props }) {
 }
 
 function KeyTermsMetrics({ className, ...props }) {
-  const metrics = [
+  const keywordMetrics = [
     {
       keyword: 'Leadership',
       matchPercent: 75,
@@ -102,20 +102,20 @@ function KeyTermsMetrics({ className, ...props }) {
             </tr>
           </thead>
           <tbody className="divide-y divide-white/5">
-            {metrics.map((metric, index) => {
-              const badgeDetails = getBadgeDetails(metric.matchPercent)
+            {keywordMetrics.map((keywordMetric, index) => {
+              const badgeDetails = getBadgeDetails(keywordMetric.matchPercent)
               return (
                 <tr key={index}>
                   <td className="whitespace-nowrap px-3 py-4 text-base font-bold text-white">
-                    <KeyTerm>{metric.keyword}</KeyTerm>
+                    <KeyTerm>{keywordMetric.keyword}</KeyTerm>
                   </td>
                   <td className="whitespace-nowrap px-3 py-4">
                     <Badge color={badgeDetails.color}>
-                      {metric.matchPercent}%
+                      {keywordMetric.matchPercent}%
                     </Badge>
                   </td>
                   <td className="whitespace-nowrap px-3 py-4 text-sm">
-                    {metric.suggestion}
+                    {keywordMetric.suggestion}
                   </td>
                 </tr>
               )
