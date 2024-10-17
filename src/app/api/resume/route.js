@@ -1,4 +1,3 @@
-import { NextResponse } from 'next/server'
 import OpenAI from 'openai' // Assuming you're using OpenAI for resume suggestions
 import pdfParse from 'pdf-parse'
 
@@ -7,15 +6,12 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 })
 
-export async function GET() {
-  return NextResponse.json({ message: 'Resume API GET route works!' })
-}
-
 export async function POST(req) {
   try {
     const formData = await req.formData()
-    const resumeFile = formData.get('resume') // Get the uploaded file
-    const jobDescription = formData.get('jobDescription') // Get the job description
+    const resumeFile = formData.get('resume')
+    const jobDescription = formData.get('jobDescription') || ''
+
     if (!resumeFile) {
       return new Response(JSON.stringify({ error: 'No resume uploaded' }), {
         status: 400,
@@ -28,29 +24,108 @@ export async function POST(req) {
 
     // Parse the PDF resume using pdf-parse
     const parsedData = await pdfParse(buffer)
-    const resumeText = parsedData.text // Extracted text from the PDF
+    const resumeText = parsedData.text
 
-    // Call the OpenAI API to get resume suggestions
-    // Now send the extracted text and job description to OpenAI to generate suggestions
+    // Construct a base prompt
+    let prompt = `You are a resume analysis assistant. Analyze the following resume and provide the analysis in the following JSON format:
+
+{
+  "matchScore": number, // Overall match score (you can base this on general best practices)
+  "metrics": [
+    {
+      "keyword": string, // A key term identified
+      "matchPercent": number, // Estimated match percentage (0-100)
+      "suggestion": string // Suggestion for improvement
+    },
+    // ... up to 7-10 keywords
+  ],
+  "breakdowns": [
+    { "title": "Skills", "percentage": number },
+    { "title": "Experience", "percentage": number },
+    { "title": "Education", "percentage": number }
+  ],
+  "suggestions": [
+    {
+      "title": string,
+      "priority": "High" | "Medium" | "Low",
+      "type": "Add" | "Edit" | "Delete"
+    },
+    // ... up to 7 suggestions
+  ],
+  "strengths": [
+    { "title": string },
+    // ... list of strengths and pros of the resume
+  ]
+}
+
+Resume:
+
+${resumeText}
+
+`
+
+    // If job description is provided, modify the prompt to include it
+    if (jobDescription) {
+      prompt += `Job Description:
+
+${jobDescription}
+
+Provide suggestions based on the match between the resume and the job description.
+`
+    } else {
+      prompt += `
+      
+      Provide general suggestions based on the resume, without a specific job description.
+      
+      `
+    }
+
+    // Call OpenAI's API to generate suggestions
     const completion = await openai.chat.completions.create({
-      model: 'gpt-4', // You can use GPT-4 or GPT-3.5
+      model: 'gpt-4',
       messages: [
-        { role: 'system', content: 'You are a resume optimization assistant.' },
         {
-          role: 'user',
-          content: `Here is a resume: \n\n${resumeText}\n\nBased on this resume, provide up to 7 tailored suggestions for improvement considering the following job description:\n\n${jobDescription}`,
+          role: 'system',
+          content:
+            'You are a helpful assistant that outputs data in JSON format only.',
         },
+        { role: 'user', content: prompt },
       ],
     })
 
-    const suggestionsText = completion.choices[0].message.content
-    let suggestionsArray = suggestionsText.split('\n').filter(Boolean) // Split by newline, remove empty entries
-    if (suggestionsArray.length > 7) {
-      suggestionsArray = suggestionsArray.slice(0, 7) // Limit to 7 suggestions
+    const completionText = completion.choices[0].message.content
+
+    // Extract the JSON part of the response
+    const jsonMatch = completionText.match(/\{[\s\S]*\}/)
+
+    if (!jsonMatch) {
+      console.error('No JSON found in the OpenAI response:', completionText)
+      return new Response(
+        JSON.stringify({ error: 'No JSON found in OpenAI response' }),
+        {
+          status: 500,
+        },
+      )
     }
 
-    // Return the suggestions as an array in the response
-    return new Response(JSON.stringify({ suggestions: suggestionsArray }), {
+    const jsonString = jsonMatch[0]
+
+    let analysisData
+    try {
+      analysisData = JSON.parse(jsonString)
+    } catch (e) {
+      console.error('Error parsing JSON:', e)
+      console.error('JSON string:', jsonString)
+      return new Response(
+        JSON.stringify({ error: 'Error parsing JSON from OpenAI response' }),
+        {
+          status: 500,
+        },
+      )
+    }
+
+    // Return the analysis data as the API response
+    return new Response(JSON.stringify(analysisData), {
       status: 200,
     })
   } catch (error) {
