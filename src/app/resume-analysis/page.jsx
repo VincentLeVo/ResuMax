@@ -1,8 +1,8 @@
-'use client' // This page is also client-side because we need to read query params
-
+'use client'
 import { Container } from '@/components/Container'
 import { KeyTermsMetrics } from '@/components/KeyTermsMetrics'
 import { Heading } from '@/components/Text'
+import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 import { ResumeBreakdown } from '@/components/ResumeBreakdown'
@@ -12,6 +12,20 @@ import { Summary } from '@/components/Summary'
 
 export default function ResumeSuggestions() {
   const [analysisData, setAnalysisData] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const searchParams = useSearchParams()
+
+  // Function to check if the data is fully loaded
+  const isDataReady = (data) => {
+    return (
+      data &&
+      data.matchScore &&
+      Array.isArray(data.keywordMetrics) &&
+      Array.isArray(data.breakdowns) &&
+      Array.isArray(data.suggestions) &&
+      Array.isArray(data.strengths)
+    )
+  }
 
   useEffect(() => {
     const temporaryData = {
@@ -117,24 +131,39 @@ export default function ResumeSuggestions() {
     }
 
     const fetchStoredData = async () => {
+      setLoading(true)
       const storedData = await localStorage.getItem('analysisData')
       if (storedData) {
-        setAnalysisData(JSON.parse(storedData))
+        const parsedData = JSON.parse(storedData)
+        // Check if the data is ready before setting it
+        if (isDataReady(parsedData)) {
+          setAnalysisData(parsedData)
+        }
       }
+      setLoading(false)
     }
 
-    console.log('Fetching temporary data', temporaryData)
     const fetchTemporaryData = () => {
-      setAnalysisData(temporaryData)
+      setLoading(true)
+      // Simulate loading
+      setTimeout(() => {
+        setAnalysisData(temporaryData)
+        setLoading(false)
+      }, 2000) // Simulate delay
     }
 
-    // fetchStoredData()
-    fetchTemporaryData()
-  }, [])
+    const isLoading = searchParams.get('loading')
 
-  if (!analysisData) {
-    return <div>Loading...</div>
+    if (isLoading === 'true') {
+      // Fetch temporary data or from localStorage
+      fetchTemporaryData()
+    }
+  }, [searchParams])
+
+  if (loading || !isDataReady(analysisData)) {
+    return <div>Loading complete data...</div>
   }
+
   return (
     <>
       <Container>

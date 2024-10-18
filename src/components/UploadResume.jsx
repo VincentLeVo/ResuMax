@@ -27,6 +27,9 @@ export function UploadResume() {
       formData.append('resume', resumeFile)
       formData.append('jobDescription', jobDescription)
 
+      //Navigate to resume analysis page with loading state
+      router.push('/resume-analysis?loading=true')
+
       // Make POST request to the API
       const response = await fetch('/api/resume', {
         method: 'POST',
@@ -43,7 +46,7 @@ export function UploadResume() {
         localStorage.setItem('analysisData', JSON.stringify(analysisData))
 
         setError('')
-        router.push('/resume-analysis') // Navigate to the analysis page
+        // Navigate to the analysis page
       } else {
         setError('Error processing resume.')
       }
