@@ -7,11 +7,10 @@ import { KeyTerm } from '@/components/KeyTerm'
 import { Heading, Subheading } from '@/components/Text'
 import { getBadgeDetails, getProgressBarColor } from '@/utils/statusUtils'
 import { PencilIcon, PlusIcon, XMarkIcon } from '@heroicons/react/24/solid'
-import { useSearchParams } from 'next/navigation' // For accessing query parameters from the URL
 import { useEffect, useState } from 'react'
 
-function Summary({ className, ...props }) {
-  let matchScore = 85 // Replace this with the actual match score
+function Summary({ matchScore, className, ...props }) {
+  // let matchScore = 85 // Replace this with the actual match score
 
   // Determine badge text and color based on matchScore
   const getBadgeDetails = (score) => {
@@ -27,7 +26,7 @@ function Summary({ className, ...props }) {
   const badgeDetails = getBadgeDetails(matchScore)
 
   return (
-    <div className="" {...props}>
+    <div className={className} {...props}>
       <Subheading>Summary</Subheading>
       <div className="mt-4 flex flex-col gap-4">
         <div className="">
@@ -63,24 +62,24 @@ function Summary({ className, ...props }) {
   )
 }
 
-function KeyTermsMetrics({ className, ...props }) {
-  const keywordMetrics = [
-    {
-      keyword: 'Leadership',
-      matchPercent: 75,
-      suggestion: 'Consider elaborating',
-    },
-    {
-      keyword: 'Agile',
-      matchPercent: 50,
-      suggestion: 'Missing, please add',
-    },
-    {
-      keyword: 'Communication',
-      matchPercent: 90,
-      suggestion: 'Great job!',
-    },
-  ]
+function KeyTermsMetrics({ keywordMetrics, className, ...props }) {
+  // const keywordMetrics = [
+  //   {
+  //     keyword: 'Leadership',
+  //     matchPercent: 75,
+  //     suggestion: 'Consider elaborating',
+  //   },
+  //   {
+  //     keyword: 'Agile',
+  //     matchPercent: 50,
+  //     suggestion: 'Missing, please add',
+  //   },
+  //   {
+  //     keyword: 'Communication',
+  //     matchPercent: 90,
+  //     suggestion: 'Great job!',
+  //   },
+  // ]
 
   return (
     <div className={className} {...props}>
@@ -127,17 +126,27 @@ function KeyTermsMetrics({ className, ...props }) {
   )
 }
 
-function ResumeBreakdown({ className, ...props }) {
-  const breakdowns = [
-    { title: 'Skills', percentage: 80 },
-    { title: 'Experience', percentage: 70 },
-    { title: 'Education', percentage: 90 },
+function ResumeBreakdown({ breakdowns, className, ...props }) {
+  // Temporary data
+  breakdowns = [
+    {
+      title: 'Skills',
+      percentage: 85,
+    },
+    {
+      title: 'Experience',
+      percentage: 70,
+    },
+    {
+      title: 'Education',
+      percentage: 80,
+    },
   ]
 
   return (
     <div className={className} {...props}>
       <Subheading>Resume Breakdown</Subheading>
-      <dl className="mt-3 grid grid-cols-1 divide-y divide-white/10 overflow-hidden rounded-lg shadow">
+      <dl className="bg-red-400grid mt-3 grid-cols-1 divide-y divide-white/10 overflow-hidden rounded-lg shadow">
         {breakdowns.map((breakdown, index) => {
           const color = getProgressBarColor(breakdown.percentage)
           return (
@@ -159,29 +168,29 @@ function ResumeBreakdown({ className, ...props }) {
   )
 }
 
-function Suggestions() {
-  let suggestions = [
-    {
-      title: 'Add more technical keywords to match the job',
-      priority: 'High',
-      type: 'Add',
-    },
-    {
-      title: 'Consider expanding leadership roles',
-      priority: 'Medium',
-      type: 'Add',
-    },
-    {
-      title: 'Edit the work experience section about company culture',
-      priority: 'Low',
-      type: 'Edit',
-    },
-    {
-      title: 'Delete the objective section',
-      priority: 'High',
-      type: 'Delete',
-    },
-  ]
+function Suggestions({ suggestions, className, ...props }) {
+  // let suggestions = [
+  //   {
+  //     title: 'Add more technical keywords to match the job',
+  //     priority: 'High',
+  //     type: 'Add',
+  //   },
+  //   {
+  //     title: 'Consider expanding leadership roles',
+  //     priority: 'Medium',
+  //     type: 'Add',
+  //   },
+  //   {
+  //     title: 'Edit the work experience section about company culture',
+  //     priority: 'Low',
+  //     type: 'Edit',
+  //   },
+  //   {
+  //     title: 'Delete the objective section',
+  //     priority: 'High',
+  //     type: 'Delete',
+  //   },
+  // ]
 
   const priorityStyles = {
     High: 'red',
@@ -196,7 +205,7 @@ function Suggestions() {
   }
 
   return (
-    <div className="mt-14">
+    <div className={className}>
       <Subheading>Personalized Suggestions</Subheading>
       <div className="mt-3">
         <ul className="flex flex-col divide-y divide-white/10">
@@ -227,26 +236,26 @@ function Suggestions() {
   )
 }
 
-function Strengths() {
-  let strengths = [
-    {
-      title:
-        'Your resume has strong industry-specific keywords. It is well optimized.',
-    },
-    {
-      title: 'Your education section is well-detailed.',
-    },
-    {
-      title: 'Your skills in frontend are excellent.',
-    },
-    {
-      title: 'Your resume has strong industry-specific keywords.',
-    },
-  ]
+function Strengths({ strengths, className, ...props }) {
+  // let strengths = [
+  //   {
+  //     title:
+  //       'Your resume has strong industry-specific keywords. It is well optimized.',
+  //   },
+  //   {
+  //     title: 'Your education section is well-detailed.',
+  //   },
+  //   {
+  //     title: 'Your skills in frontend are excellent.',
+  //   },
+  //   {
+  //     title: 'Your resume has strong industry-specific keywords.',
+  //   },
+  // ]
 
   return (
     /* Resume Strengths */
-    <div className="mt-14">
+    <div className={className} {...props}>
       <Subheading>Strengths</Subheading>
       <ul className="mt-3 divide-y divide-white/10">
         {strengths.map((strength, index) => {
@@ -269,33 +278,24 @@ function Strengths() {
 }
 
 export default function ResumeSuggestions() {
-  const searchParams = useSearchParams()
-  const suggestions = searchParams.get('suggestions') // Get the 'suggestions' query param
-  const [parsedSuggestions, setParsedSuggestions] = useState([])
+  const [analysisData, setAnalysisData] = useState(null)
 
   useEffect(() => {
-    if (suggestions) {
-      setParsedSuggestions(JSON.parse(suggestions)) // Parse the suggestions passed as a query param
+    const fetchStoredData = async () => {
+      const storedData = await localStorage.getItem('analysisData')
+      if (storedData) {
+        setAnalysisData(JSON.parse(storedData))
+      }
     }
-  }, [suggestions])
+    fetchStoredData()
+  }, [])
+
+  if (!analysisData) {
+    return <div>Loading...</div>
+  }
 
   return (
     <>
-      {' '}
-      <div className="container mx-auto mt-10">
-        <h1 className="mb-4 text-2xl font-bold">Resume Suggestions</h1>
-        {parsedSuggestions.length > 0 ? (
-          <ul className="list-disc space-y-2 pl-5">
-            {parsedSuggestions.map((suggestion, index) => (
-              <li key={index} className="text-lg text-gray-800">
-                {suggestion}
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p className="text-lg">No suggestions available. Please try again.</p>
-        )}
-      </div>
       <Container>
         <div className="flex flex-col">
           <Heading>Resume Analysis</Heading>
@@ -303,17 +303,20 @@ export default function ResumeSuggestions() {
             {/* Left sidebar & main wrapper */}
             <div className="flex-1 xl:flex">
               <div className="border-b border-gray-200 px-4 py-6 sm:px-6 lg:pl-8 xl:w-64 xl:shrink-0 xl:border-b-0 xl:border-r xl:pl-6">
-                <Summary />
-                <ResumeBreakdown className="mt-14" />
+                <Summary matchScore={analysisData.matchScore} />
+                <ResumeBreakdown
+                  breakdowns={analysisData.breakdowns}
+                  className="mt-14"
+                />
               </div>
 
               <div className="px-4 py-6 sm:px-6 lg:pl-8 xl:flex-1 xl:pl-10"></div>
             </div>
 
             <div className="shrink-0 border-t border-gray-200 px-4 py-6 sm:px-6 lg:w-[32rem] lg:border-l lg:border-t-0 lg:pr-8 xl:pr-6">
-              <KeyTermsMetrics />
-              <Suggestions />
-              <Strengths />
+              <KeyTermsMetrics keywordMetrics={analysisData.keywordMetrics} />
+              <Suggestions suggestions={analysisData.suggestions} />
+              <Strengths strengths={analysisData.strengths} />
             </div>
           </div>
         </div>

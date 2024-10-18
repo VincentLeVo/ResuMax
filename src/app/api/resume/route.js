@@ -31,7 +31,7 @@ export async function POST(req) {
 
 {
   "matchScore": number, // Overall match score (you can base this on general best practices)
-  "metrics": [
+  "keywordMetrics": [
     {
       "keyword": string, // A key term identified
       "matchPercent": number, // Estimated match percentage (0-100)
