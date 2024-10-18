@@ -17,7 +17,8 @@
     "pdf-lib": "^1.17.1",
     "pdf-parse": "^1.1.1",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-spinners": "^0.14.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",
