@@ -1,299 +1,140 @@
 'use client' // This page is also client-side because we need to read query params
 
-import { Badge } from '@/components/Badge'
 import { Container } from '@/components/Container'
-import { Divider } from '@/components/Divider'
-import { KeyTerm } from '@/components/KeyTerm'
-import { Heading, Subheading } from '@/components/Text'
-import { getBadgeDetails, getProgressBarColor } from '@/utils/statusUtils'
-import { PencilIcon, PlusIcon, XMarkIcon } from '@heroicons/react/24/solid'
+import { KeyTermsMetrics } from '@/components/KeyTermsMetrics'
+import { Heading } from '@/components/Text'
 import { useEffect, useState } from 'react'
 
-function Summary({ matchScore, className, ...props }) {
-  // let matchScore = 85 // Replace this with the actual match score
-
-  // Determine badge text and color based on matchScore
-  const getBadgeDetails = (score) => {
-    if (score > 75) {
-      return { text: 'Optimized', color: 'green' }
-    } else if (score >= 45 && score <= 74) {
-      return { text: 'Can Be Improved', color: 'yellow' }
-    } else {
-      return { text: 'Needs Work', color: 'red' }
-    }
-  }
-
-  const badgeDetails = getBadgeDetails(matchScore)
-
-  return (
-    <div className={className} {...props}>
-      <Subheading>Summary</Subheading>
-      <div className="mt-4 flex flex-col gap-4">
-        <div className="">
-          <div className="text-md/6 mb-2 font-normal">Resume Status:</div>
-          <Badge color={badgeDetails.color} size="large">
-            {badgeDetails.text}
-          </Badge>
-        </div>
-        <Divider />
-        <div className="flex flex-col">
-          <div className="text-md/6 mb-2 font-normal">Match Score:</div>
-          {/* This is so Tailwind Processes the CSS */}
-          <div className="hidden bg-green-500/10 bg-red-500/10 bg-yellow-500/10" />
-          <div
-            className={`h-24 w-24 rounded-full bg-${badgeDetails.color}-500/10 text-${badgeDetails.color}-400 flex items-center justify-center text-2xl font-bold`}
-          >
-            {matchScore}%
-          </div>
-        </div>
-        <div className="flex items-center">
-          <div className="relative">
-            <div className="absolute right-0 top-0">
-              <span className="cursor-pointer text-gray-400">?</span>
-              <div className="tooltip rounded bg-gray-200 p-2 text-sm text-gray-700">
-                This score reflects the match between your resume and the
-                uploaded job description.
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-function KeyTermsMetrics({ keywordMetrics, className, ...props }) {
-  // const keywordMetrics = [
-  //   {
-  //     keyword: 'Leadership',
-  //     matchPercent: 75,
-  //     suggestion: 'Consider elaborating',
-  //   },
-  //   {
-  //     keyword: 'Agile',
-  //     matchPercent: 50,
-  //     suggestion: 'Missing, please add',
-  //   },
-  //   {
-  //     keyword: 'Communication',
-  //     matchPercent: 90,
-  //     suggestion: 'Great job!',
-  //   },
-  // ]
-
-  return (
-    <div className={className} {...props}>
-      {' '}
-      <Subheading>Keyword Match</Subheading>
-      <div className="mt-4 rounded-lg p-2">
-        <table className="w-full min-w-full table-auto whitespace-nowrap text-left text-sm/6 text-white">
-          <thead className="text-zinc-400">
-            <tr className="text-left">
-              <th className="border-b border-b-zinc-950/10 px-3 pb-4 font-medium first:pl-[var(--gutter,theme(spacing.2))] last:pr-[var(--gutter,theme(spacing.2))] dark:border-b-white/10">
-                Keyword
-              </th>
-              <th className="border-b border-b-zinc-950/10 px-3 pb-4 font-medium first:pl-[var(--gutter,theme(spacing.2))] last:pr-[var(--gutter,theme(spacing.2))] dark:border-b-white/10">
-                Match %
-              </th>
-              <th className="border-b border-b-zinc-950/10 px-3 pb-4 font-medium first:pl-[var(--gutter,theme(spacing.2))] last:pr-[var(--gutter,theme(spacing.2))] dark:border-b-white/10">
-                Suggestions
-              </th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-white/5">
-            {keywordMetrics.map((keywordMetric, index) => {
-              const badgeDetails = getBadgeDetails(keywordMetric.matchPercent)
-              return (
-                <tr key={index}>
-                  <td className="whitespace-nowrap px-3 py-4 text-base font-bold text-white">
-                    <KeyTerm>{keywordMetric.keyword}</KeyTerm>
-                  </td>
-                  <td className="whitespace-nowrap px-3 py-4">
-                    <Badge color={badgeDetails.color}>
-                      {keywordMetric.matchPercent}%
-                    </Badge>
-                  </td>
-                  <td className="whitespace-nowrap px-3 py-4 text-sm">
-                    {keywordMetric.suggestion}
-                  </td>
-                </tr>
-              )
-            })}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  )
-}
-
-function ResumeBreakdown({ breakdowns, className, ...props }) {
-  // Temporary data
-  breakdowns = [
-    {
-      title: 'Skills',
-      percentage: 85,
-    },
-    {
-      title: 'Experience',
-      percentage: 70,
-    },
-    {
-      title: 'Education',
-      percentage: 80,
-    },
-  ]
-
-  return (
-    <div className={className} {...props}>
-      <Subheading>Resume Breakdown</Subheading>
-      <dl className="bg-red-400grid mt-3 grid-cols-1 divide-y divide-white/10 overflow-hidden rounded-lg shadow">
-        {breakdowns.map((breakdown, index) => {
-          const color = getProgressBarColor(breakdown.percentage)
-          return (
-            <div key={index} className="py-6">
-              <dt className="text-md mb-2 font-semibold text-white">
-                {breakdown.title}: {breakdown.percentage}%
-              </dt>
-              <dd className="w-full bg-white/10">
-                <div
-                  className={`bg-${color}-400 h-2 rounded-full`}
-                  style={{ width: `${breakdown.percentage}%` }}
-                ></div>
-              </dd>
-            </div>
-          )
-        })}
-      </dl>
-    </div>
-  )
-}
-
-function Suggestions({ suggestions, className, ...props }) {
-  // let suggestions = [
-  //   {
-  //     title: 'Add more technical keywords to match the job',
-  //     priority: 'High',
-  //     type: 'Add',
-  //   },
-  //   {
-  //     title: 'Consider expanding leadership roles',
-  //     priority: 'Medium',
-  //     type: 'Add',
-  //   },
-  //   {
-  //     title: 'Edit the work experience section about company culture',
-  //     priority: 'Low',
-  //     type: 'Edit',
-  //   },
-  //   {
-  //     title: 'Delete the objective section',
-  //     priority: 'High',
-  //     type: 'Delete',
-  //   },
-  // ]
-
-  const priorityStyles = {
-    High: 'red',
-    Medium: 'orange',
-    Low: 'zinc',
-  }
-
-  const iconMapping = {
-    Add: PlusIcon,
-    Delete: XMarkIcon,
-    Edit: PencilIcon,
-  }
-
-  return (
-    <div className={className}>
-      <Subheading>Personalized Suggestions</Subheading>
-      <div className="mt-3">
-        <ul className="flex flex-col divide-y divide-white/10">
-          {suggestions.map((suggestion, index) => {
-            const Icon = iconMapping[suggestion.type] // Dynamically selecting the icon
-            return (
-              <li key={index} className="w-full py-5">
-                <div className="flex content-center">
-                  <Icon className="mr-4 h-6 w-6 self-baseline text-gray-400" />
-                  <div>
-                    <p className="text-base font-semibold">
-                      {suggestion.title}
-                    </p>
-                    <Badge
-                      className="mt-1"
-                      color={priorityStyles[suggestion.priority]}
-                    >
-                      {suggestion.priority} Priority
-                    </Badge>
-                  </div>
-                </div>
-              </li>
-            )
-          })}
-        </ul>
-      </div>
-    </div>
-  )
-}
-
-function Strengths({ strengths, className, ...props }) {
-  // let strengths = [
-  //   {
-  //     title:
-  //       'Your resume has strong industry-specific keywords. It is well optimized.',
-  //   },
-  //   {
-  //     title: 'Your education section is well-detailed.',
-  //   },
-  //   {
-  //     title: 'Your skills in frontend are excellent.',
-  //   },
-  //   {
-  //     title: 'Your resume has strong industry-specific keywords.',
-  //   },
-  // ]
-
-  return (
-    /* Resume Strengths */
-    <div className={className} {...props}>
-      <Subheading>Strengths</Subheading>
-      <ul className="mt-3 divide-y divide-white/10">
-        {strengths.map((strength, index) => {
-          return (
-            <li key={index} className="w-full py-3">
-              <div className="flex items-center">
-                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-zinc-500/10 text-zinc-500">
-                  ✔
-                </div>
-                <div className="ml-4">
-                  <p className="text-sm">{strength.title}</p>
-                </div>
-              </div>
-            </li>
-          )
-        })}
-      </ul>
-    </div>
-  )
-}
+import { ResumeBreakdown } from '@/components/ResumeBreakdown'
+import { Strengths } from '@/components/Strengths'
+import { Suggestions } from '@/components/Suggestions'
+import { Summary } from '@/components/Summary'
 
 export default function ResumeSuggestions() {
   const [analysisData, setAnalysisData] = useState(null)
 
   useEffect(() => {
+    const temporaryData = {
+      matchScore: 75,
+      keywordMetrics: [
+        {
+          keyword: 'Software Development',
+          matchPercent: 85,
+          suggestion:
+            'Emphasize more direct experience with software development phases and methodologies',
+        },
+        {
+          keyword: 'JavaScript',
+          matchPercent: 70,
+          suggestion:
+            'Provide more specific examples of projects or tasks completed using JavaScript',
+        },
+        {
+          keyword: 'React',
+          matchPercent: 80,
+          suggestion: 'Highlight React experience in more prominent position',
+        },
+        {
+          keyword: 'RESTful APIs',
+          matchPercent: 90,
+          suggestion: 'None necessary, strong match',
+        },
+        {
+          keyword: 'Git',
+          matchPercent: 100,
+          suggestion: 'None necessary, strong match',
+        },
+        {
+          keyword: 'Agile Development',
+          matchPercent: 0,
+          suggestion:
+            'Add relevant Agile development methodologies experience if any',
+        },
+        {
+          keyword: 'Docker',
+          matchPercent: 75,
+          suggestion: 'Expand on experiences using Docker in past projects',
+        },
+        {
+          keyword: 'Ci/CD pipelines',
+          matchPercent: 10,
+          suggestion: 'Add relevant experiences with CI/CD pipelines if any',
+        },
+        {
+          keyword: 'Next.js',
+          matchPercent: 0,
+          suggestion: 'Add relevant experiences with Next.js if any',
+        },
+      ],
+      breakdowns: [
+        {
+          title: 'Skills',
+          percentage: 65,
+        },
+        {
+          title: 'Experience',
+          percentage: 85,
+        },
+        {
+          title: 'Education',
+          percentage: 90,
+        },
+      ],
+      suggestions: [
+        {
+          title: 'Add Next.js skills',
+          priority: 'Medium',
+          type: 'Add',
+        },
+        {
+          title: 'Highlight Agile experience',
+          priority: 'High',
+          type: 'Edit',
+        },
+        {
+          title: 'Add CI/CD pipelines experience',
+          priority: 'High',
+          type: 'Add',
+        },
+      ],
+      strengths: [
+        {
+          title: 'Strong Java, Python and JavaScript skill sets',
+        },
+        {
+          title: 'Extensive experience with Git',
+        },
+        {
+          title: 'Effective use of RESTful APIs in previous projects',
+        },
+        {
+          title: 'Good educative background and related coursework',
+        },
+        {
+          title: 'Experience with Docker',
+        },
+      ],
+    }
+
     const fetchStoredData = async () => {
       const storedData = await localStorage.getItem('analysisData')
       if (storedData) {
         setAnalysisData(JSON.parse(storedData))
       }
     }
-    fetchStoredData()
+
+    console.log('Fetching temporary data', temporaryData)
+    const fetchTemporaryData = () => {
+      setAnalysisData(temporaryData)
+    }
+
+    // fetchStoredData()
+    fetchTemporaryData()
   }, [])
 
   if (!analysisData) {
     return <div>Loading...</div>
   }
-
   return (
     <>
       <Container>
