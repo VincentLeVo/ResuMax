@@ -1,7 +1,13 @@
 import { clsx } from 'clsx'
 import { Subheading } from '@/components/Text'
 
-export function Card({ title = '', className, children, ...props }) {
+export function Card({
+  title = '',
+  bleedContent = false,
+  className,
+  children,
+  ...props
+}) {
   return (
     <div
       className={clsx(
@@ -15,7 +21,7 @@ export function Card({ title = '', className, children, ...props }) {
           <Subheading>{title}</Subheading>
         </div>
       )}
-      <div className="px-4 py-5 sm:p-6">{children}</div>
+      <div className={!bleedContent && 'px-4 py-5 sm:p-6'}>{children}</div>
     </div>
   )
 }

@@ -11,17 +11,15 @@ export function KeyTermsMetrics({
   ...props
 }) {
   return (
-    <div
+    <Card
+      bleedContent
+      title="Keyword Metrics"
       className={clsx(
         'divide-y divide-slate-500/20 overflow-hidden rounded-2xl border border-slate-200/10 bg-slate-900 shadow',
         className,
       )}
       {...props}
     >
-      <div className="px-4 py-3 sm:px-6">
-        <Subheading>Keyword Metrics</Subheading>
-      </div>
-
       <div className="">
         <table className="mt-4 w-full min-w-full table-auto whitespace-nowrap text-left text-sm/6 text-white">
           <thead className="text-zinc-400">
@@ -59,6 +57,6 @@ export function KeyTermsMetrics({
           </tbody>
         </table>
       </div>
-    </div>
+    </Card>
   )
 }
