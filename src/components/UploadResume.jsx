@@ -69,7 +69,7 @@ export function UploadResume() {
     setResumeFile(file)
   }
 
-  if (isLoading) {
+  if (isLoading && !error) {
     return (
       <Container className="py-52">
         <LoadingSpinner />
@@ -90,7 +90,7 @@ export function UploadResume() {
         </div>
       </div>
       <form onSubmit={handleSubmit}>
-        <div className="mx-auto mt-6 flex flex-col justify-center px-6 py-10">
+        <div className="mx-auto mt-6 flex flex-col justify-center">
           <div className="w-full self-center rounded-xl border border-dashed border-sky-200/80 py-20 text-center">
             <PaperClipIcon
               aria-hidden="true"
@@ -156,7 +156,7 @@ export function UploadResume() {
 
         {/* Display Error Message */}
         {error && (
-          <p className="my-4 text-center text-lg font-semibold text-red-400">
+          <p className="mt-3 text-center text-lg font-semibold text-red-400">
             {error}
           </p>
         )}
@@ -164,7 +164,7 @@ export function UploadResume() {
         <OptionalJobDescription
           jobDescription={jobDescription}
           setJobDescription={setJobDescription}
-          className="mt-6"
+          className="mt-7"
         />
         <div className="flex justify-center">
           <Button type="submit" color="sky" size="large" className="mt-4">
