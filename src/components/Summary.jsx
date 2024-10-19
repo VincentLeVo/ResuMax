@@ -1,6 +1,8 @@
 import { Badge } from '@/components/Badge'
 import { Divider } from '@/components/Divider'
 import { Subheading } from '@/components/Text'
+import { Card } from '@/components/Card'
+import clsx from 'clsx'
 
 export function Summary({ matchScore, className, ...props }) {
   // Determine badge text and color based on matchScore
@@ -15,40 +17,29 @@ export function Summary({ matchScore, className, ...props }) {
   }
 
   const badgeDetails = getBadgeDetails(matchScore)
-
+  const badgeColorClasses = {
+    red: 'bg-red-500/10 text-red-400 border-red-500/10',
+    green: 'bg-green-500/10 text-green-400 border-green-500/10',
+    yellow: 'bg-yellow-500/10 text-yellow-400 border-yellow-500/10',
+  }
   return (
-    <div className={className} {...props}>
-      <Subheading>Summary</Subheading>
-      <div className="mt-4 flex flex-col gap-4">
-        <div className="">
-          <div className="text-md/6 mb-2 font-normal">Resume Status:</div>
-          <Badge color={badgeDetails.color} size="large">
+    <Card className={className} title="Summary" {...props}>
+      <div className="flex flex-col items-center">
+        <div className="mb-3 text-xl font-normal">Resume Match Score</div>
+        <div
+          className={clsx(
+            `flex h-36 w-36 items-center justify-center rounded-full border-4 text-5xl font-bold`,
+            badgeColorClasses[badgeDetails.color],
+          )}
+        >
+          {matchScore}%
+        </div>
+        <div>
+          <Badge size="xl" color={badgeDetails.color} className="mt-6">
             {badgeDetails.text}
           </Badge>
         </div>
-        <Divider />
-        <div className="flex flex-col">
-          <div className="text-md/6 mb-2 font-normal">Match Score:</div>
-          {/* This is so Tailwind Processes the CSS */}
-          <div className="hidden bg-green-500/10 bg-red-500/10 bg-yellow-500/10" />
-          <div
-            className={`h-24 w-24 rounded-full bg-${badgeDetails.color}-500/10 text-${badgeDetails.color}-400 flex items-center justify-center text-2xl font-bold`}
-          >
-            {matchScore}%
-          </div>
-        </div>
-        <div className="flex items-center">
-          <div className="relative">
-            <div className="absolute right-0 top-0">
-              <span className="cursor-pointer text-gray-400">?</span>
-              <div className="tooltip rounded bg-gray-200 p-2 text-sm text-gray-700">
-                This score reflects the match between your resume and the
-                uploaded job description.
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
-    </div>
+    </Card>
   )
 }

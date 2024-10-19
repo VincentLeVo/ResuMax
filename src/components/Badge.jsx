@@ -34,6 +34,12 @@ const colors = {
   zinc: 'bg-zinc-600/10 text-zinc-700 group-data-[hover]:bg-zinc-600/20 dark:bg-white/5 dark:text-zinc-400 dark:group-data-[hover]:bg-white/10',
 }
 
+const sizes = {
+  small: 'px-1.5 py-0.5 text-sm/5',
+  large: 'px-3 py-2 text-lg/5',
+  xl: 'px-5 py-3 text-3xl/6',
+}
+
 export function Badge({ color = 'zinc', size = 'small', className, ...props }) {
   return (
     <span
@@ -41,7 +47,7 @@ export function Badge({ color = 'zinc', size = 'small', className, ...props }) {
       className={clsx(
         className,
         'inline-flex items-center gap-x-1.5 rounded-md font-medium forced-colors:outline',
-        size === 'small' ? 'px-1.5 py-0.5 text-sm/5' : 'px-3 py-2 text-lg/5',
+        sizes[size],
         colors[color],
       )}
     />

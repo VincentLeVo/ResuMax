@@ -175,10 +175,10 @@ export default function ResumeSuggestions() {
       <Container>
         <div className="flex flex-col">
           <Heading>Resume Analysis</Heading>
-          <div className="mx-auto mt-6 w-full max-w-7xl grow lg:flex xl:px-2">
+          <div className="max-w-10xl mx-auto mt-6 w-full grow lg:flex">
             {/* Left sidebar & main wrapper */}
             <div className="flex-1 xl:flex">
-              <div className="border-b border-gray-200 px-4 py-6 sm:px-6 lg:pl-8 xl:w-64 xl:shrink-0 xl:border-b-0 xl:border-r xl:pl-6">
+              <div className="border-b border-gray-200 px-4 py-6 sm:px-6 lg:pl-8 xl:w-[32rem] xl:shrink-0 xl:border-b-0 xl:border-r xl:pl-2">
                 <Summary matchScore={analysisData.matchScore} />
                 <ResumeBreakdown
                   breakdowns={analysisData.breakdowns}

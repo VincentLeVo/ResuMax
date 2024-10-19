@@ -44,7 +44,7 @@ export function Navbar({ children }) {
       <div className="min-h-full">
         <div className="bg-zinc-900 pb-32">
           <Disclosure as="nav" className="bg-zinc-800">
-            <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div className="max-w-10xl mx-auto sm:px-6 lg:px-8">
               <div className="border-b border-zinc-700">
                 <div className="flex h-16 items-center justify-between px-4 sm:px-0">
                   <div className="flex items-center">
@@ -182,7 +182,7 @@ export function Navbar({ children }) {
             </DisclosurePanel>
           </Disclosure>
           <header className="py-10">
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="max-w-10xl mx-auto px-4 sm:px-6 lg:px-8">
               <h1 className="text-1xl font-bold tracking-tight text-white">
                 Dashboard
               </h1>
@@ -191,7 +191,7 @@ export function Navbar({ children }) {
         </div>
 
         <main className="-mt-32">
-          <div className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
+          <div className="max-w-10xl mx-auto px-4 pb-12 sm:px-6 lg:px-8">
             <div className="rounded-lg bg-zinc-800 px-5 py-6 shadow sm:px-6">
               {children}
             </div>

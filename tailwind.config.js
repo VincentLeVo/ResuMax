@@ -7,13 +7,18 @@ module.exports = {
   ],
   theme: {
     extend: {
+      maxWidth: {
+        '8xl': '88rem',
+        '9xl': '96rem',
+        '10xl': '104rem',
+      },
       colors: {
         background: 'var(--background)',
         foreground: 'var(--foreground)',
         slate: {
-          800: '#37446B',
-          900: '#212C4D',
-          950: '#080F25',
+          800: '#0B1739',
+          900: '#0A1330',
+          950: '#081028',
         },
       },
       fontFamily: {
