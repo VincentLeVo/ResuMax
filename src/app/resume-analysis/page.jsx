@@ -8,6 +8,7 @@ import { Strengths } from '@/components/Strengths'
 import { Suggestions } from '@/components/Suggestions'
 import { Summary } from '@/components/Summary'
 import { Heading } from '@/components/Text'
+import { Description } from '@headlessui/react'
 import { useSearchParams } from 'next/navigation'
 import { useState } from 'react'
 
@@ -87,11 +88,14 @@ export default function ResumeSuggestions() {
       },
       {
         title: 'Highlight Agile experience',
+        description:
+          'Add Agile experience if any. Add Agile experience if any. Add Agile experience if any',
         priority: 'High',
         type: 'Edit',
       },
       {
         title: 'Add CI/CD pipelines experience',
+        description: 'Add CI/CD pipelines experience if any',
         priority: 'High',
         type: 'Add',
       },
@@ -187,10 +191,7 @@ export default function ResumeSuggestions() {
             <div className="flex-1 xl:flex">
               <div className="flex flex-col gap-y-2 p-1 xl:w-[28rem] xl:shrink-0">
                 <Summary matchScore={analysisData.matchScore} />
-                <ResumeBreakdown
-                  breakdowns={analysisData.breakdowns}
-                  className=""
-                />
+                <ResumeBreakdown breakdowns={analysisData.breakdowns} />
               </div>
 
               <div className="flex flex-col gap-y-2 p-1">

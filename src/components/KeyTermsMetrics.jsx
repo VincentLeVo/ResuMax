@@ -20,7 +20,7 @@ export function KeyTermsMetrics({
       )}
       {...props}
     >
-      <div className="">
+      <div>
         <table className="mt-4 w-full min-w-full table-auto whitespace-nowrap text-left text-sm/6 text-white">
           <thead className="text-zinc-400">
             <tr className="text-left text-base">

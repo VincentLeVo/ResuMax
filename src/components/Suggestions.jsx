@@ -35,8 +35,13 @@ export function Suggestions({ suggestions, className, ...props }) {
                 <div className="flex justify-between">
                   <div>
                     <p className="text-base font-medium">{suggestion.title}</p>
+                    {suggestion.description && (
+                      <p className="mt-2 max-w-64 text-xs text-slate-400">
+                        {suggestion.description}
+                      </p>
+                    )}
                     <Badge
-                      className="mt-1 sm:mt-2"
+                      className="mt-3 sm:mt-6"
                       color={priorityStyles[suggestion.priority]}
                       size="xs"
                     >

@@ -30,6 +30,7 @@ export async function POST(req) {
     let prompt = `You are a resume analysis assistant. Analyze the following resume and provide the analysis in the following JSON format:
 
 {
+  "jobApplicantName": string, // First Name of the job applicant,
   "matchScore": number, // Overall match score (you can base this on general best practices)
   "keywordMetrics": [
     {
@@ -46,7 +47,8 @@ export async function POST(req) {
   ],
   "suggestions": [
     {
-      "title": string,
+      "title": string, // Suggestion title (Maximum 35 Characters) 
+      "description": string, // Suggestion in-depth description (Maximum 100 Characters)
       "priority": "High" | "Medium" | "Low",
       "type": "Add" | "Edit" | "Delete"
     },
