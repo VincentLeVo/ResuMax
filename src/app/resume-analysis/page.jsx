@@ -129,7 +129,6 @@ export default function ResumeSuggestions() {
     return (
       data &&
       data.matchScore &&
-      Array.isArray(data.keywordMetrics) &&
       Array.isArray(data.breakdowns) &&
       Array.isArray(data.suggestions) &&
       Array.isArray(data.strengths)
@@ -153,10 +152,9 @@ export default function ResumeSuggestions() {
     const fetchTemporaryData = () => {
       setLoading(true)
       // Simulate loading
-      setTimeout(() => {
-        setAnalysisData(temporaryData)
-        setLoading(false)
-      }, 2000) // Simulate delay
+      setTimeout(() => {}, 2000) // Simulate delay
+      setAnalysisData(temporaryData)
+      setLoading(false)
     }
 
     const isLoading = searchParams.get('loading')
@@ -175,7 +173,7 @@ export default function ResumeSuggestions() {
   }
 
   const displayKeywordsMetrics =
-    analysisData.keywordMetrics && analysisData.keywordMetrics.length > 3
+    analysisData.keywordMetrics && analysisData.keywordMetrics.length > 2
 
   return (
     <>
@@ -190,27 +188,31 @@ export default function ResumeSuggestions() {
           <Heading className="mt-1">Resume Analysis</Heading>
           <div className="max-w-10xl mx-auto mt-14 w-full grow lg:flex">
             {/* Left sidebar & main wrapper */}
-            <div
-              className={clsx(
-                'flex-1 xl:flex',
-                displayKeywordsMetrics ? 'xl-w-2/3' : 'xl:w-full',
-              )}
-            >
-              <div className="flex flex-col gap-y-2 p-1 xl:w-[20rem] xl:shrink-0">
+            <div className={clsx('flex-1 xl:flex')}>
+              <div
+                className={clsx(
+                  'shrink-1 flex flex-col gap-y-2 p-1',
+                  displayKeywordsMetrics ? 'xl:w-[36rem]' : 'xl:w-[50rem]',
+                )}
+              >
                 <Summary matchScore={analysisData.matchScore} />
                 <ResumeBreakdown breakdowns={analysisData.breakdowns} />
               </div>
 
-              <div className="flex flex-col gap-y-2 p-1">
-                <KeyTermsMetrics keywordMetrics={analysisData.keywordMetrics} />
-              </div>
+              {displayKeywordsMetrics && (
+                <div className="shrink-1 flex flex-col gap-y-2 p-1">
+                  <KeyTermsMetrics
+                    keywordMetrics={analysisData.keywordMetrics}
+                  />
+                </div>
+              )}
             </div>
             {/* Right sidebar & main wrapper */}
 
             <div
               className={clsx(
-                'flex shrink-0 flex-col gap-y-2 p-1',
-                displayKeywordsMetrics ? 'lg:w-[28rem]' : 'lg:w-full',
+                'shrink-1 flex flex-col gap-y-2 p-1',
+                displayKeywordsMetrics ? 'xl:w-[28rem]' : 'xl:w-full',
               )}
             >
               <Suggestions suggestions={analysisData.suggestions} />

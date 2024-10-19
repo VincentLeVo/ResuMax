@@ -55,7 +55,7 @@ export function Summary({ matchScore, className, ...props }) {
           <Badge
             size="xl"
             color={badgeDetails.color}
-            className="mt-10 text-3xl font-semibold text-white"
+            className="mt-10 text-center text-xl font-semibold text-white xl:text-3xl"
           >
             {badgeDetails.text}
           </Badge>
