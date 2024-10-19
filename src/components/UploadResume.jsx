@@ -7,6 +7,8 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { Card } from '@/components/Card'
 import { Heading, Subheading } from '@/components/Text'
+import { LoadingSpinner } from '@/components/LoadingSpinner'
+
 const MAX_FILE_SIZE = 10485760 // 10MB in bytes
 
 export function UploadResume() {
@@ -14,10 +16,12 @@ export function UploadResume() {
   const [jobDescription, setJobDescription] = useState('')
   const [error, setError] = useState('') // To store error messages
   const router = useRouter()
+  const [isLoading, setIsLoading] = useState(false)
 
   // Handle form submission
   async function handleSubmit(e) {
     e.preventDefault()
+    setIsLoading(true)
     if (!resumeFile) {
       return setError('No Resume Attached. Please upload a resume.')
     }
@@ -25,8 +29,7 @@ export function UploadResume() {
       const formData = new FormData()
       formData.append('resume', resumeFile)
       formData.append('jobDescription', jobDescription)
-      //Navigate to resume analysis page with loading state
-      router.push('/resume-analysis?loading=true')
+
       // Make POST request to the API
       const response = await fetch('/api/resume', {
         method: 'POST',
@@ -37,13 +40,16 @@ export function UploadResume() {
         const analysisData = data
         // Store the analysis data in localStorage
         localStorage.setItem('analysisData', JSON.stringify(analysisData))
+        router.push('/resume-analysis') // Redirect to analysis page
+        setIsLoading(false)
         setError('')
-        // Navigate to the analysis page
       } else {
         setError('Error processing resume.')
+        setIsLoading(false)
       }
     } catch (err) {
       setError('An error occurred while submitting the form.')
+      setIsLoading(false)
       console.error(err)
     }
   }
@@ -61,6 +67,14 @@ export function UploadResume() {
 
     setError('') // Clear any previous errors when file is valid
     setResumeFile(file)
+  }
+
+  if (isLoading) {
+    return (
+      <Container className="py-52">
+        <LoadingSpinner />
+      </Container>
+    )
   }
 
   return (

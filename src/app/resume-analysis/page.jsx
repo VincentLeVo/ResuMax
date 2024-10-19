@@ -12,113 +12,113 @@ import { useSearchParams } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import clsx from 'clsx'
 export default function ResumeSuggestions() {
-  const temporaryData = {
-    jobApplicantFirstName: 'Person',
-    matchScore: 75,
-    keywordMetrics: [
-      {
-        keyword: 'Software Development',
-        matchPercent: 85,
-        suggestion:
-          'Emphasize more direct experience with software development phases and methodologies',
-      },
-      {
-        keyword: 'JavaScript',
-        matchPercent: 70,
-        suggestion:
-          'Provide more specific examples of projects or tasks completed using JavaScript',
-      },
-      {
-        keyword: 'React',
-        matchPercent: 80,
-        suggestion: 'Highlight React experience in more prominent position',
-      },
-      {
-        keyword: 'RESTful APIs',
-        matchPercent: 90,
-        suggestion: 'None necessary, strong match',
-      },
-      {
-        keyword: 'Git',
-        matchPercent: 100,
-        suggestion: 'None necessary, strong match',
-      },
-      {
-        keyword: 'Agile Development',
-        matchPercent: 0,
-        suggestion:
-          'Add relevant Agile development methodologies experience if any',
-      },
-      {
-        keyword: 'Docker',
-        matchPercent: 75,
-        suggestion: 'Expand on experiences using Docker in past projects',
-      },
-      {
-        keyword: 'Ci/CD pipelines',
-        matchPercent: 10,
-        suggestion: 'Add relevant experiences with CI/CD pipelines if any',
-      },
-      {
-        keyword: 'Next.js',
-        matchPercent: 0,
-        suggestion: 'Add relevant experiences with Next.js if any',
-      },
-    ],
-    breakdowns: [
-      {
-        title: 'Skills',
-        percentage: 65,
-      },
-      {
-        title: 'Experience',
-        percentage: 85,
-      },
-      {
-        title: 'Education',
-        percentage: 90,
-      },
-    ],
-    suggestions: [
-      {
-        title: 'Add Next.js skills',
-        priority: 'Medium',
-        type: 'Add',
-      },
-      {
-        title: 'Highlight Agile experience',
-        description:
-          'Add Agile experience if any. Add Agile experience if any. Add Agile experience if any',
-        priority: 'High',
-        type: 'Edit',
-      },
-      {
-        title: 'Add CI/CD pipelines experience',
-        description: 'Add CI/CD pipelines experience if any',
-        priority: 'High',
-        type: 'Add',
-      },
-    ],
-    strengths: [
-      {
-        title: 'Strong Java, Python and JavaScript skill sets',
-      },
-      {
-        title: 'Extensive experience with Git',
-      },
-      {
-        title: 'Effective use of RESTful APIs in previous projects',
-      },
-      {
-        title: 'Good educative background and related coursework',
-      },
-      {
-        title: 'Experience with Docker',
-      },
-    ],
-  }
+  // const temporaryData = {
+  //   jobApplicantFirstName: 'Person',
+  //   matchScore: 75,
+  //   keywordMetrics: [
+  //     {
+  //       keyword: 'Software Development',
+  //       matchPercent: 85,
+  //       suggestion:
+  //         'Emphasize more direct experience with software development phases and methodologies',
+  //     },
+  //     {
+  //       keyword: 'JavaScript',
+  //       matchPercent: 70,
+  //       suggestion:
+  //         'Provide more specific examples of projects or tasks completed using JavaScript',
+  //     },
+  //     {
+  //       keyword: 'React',
+  //       matchPercent: 80,
+  //       suggestion: 'Highlight React experience in more prominent position',
+  //     },
+  //     {
+  //       keyword: 'RESTful APIs',
+  //       matchPercent: 90,
+  //       suggestion: 'None necessary, strong match',
+  //     },
+  //     {
+  //       keyword: 'Git',
+  //       matchPercent: 100,
+  //       suggestion: 'None necessary, strong match',
+  //     },
+  //     {
+  //       keyword: 'Agile Development',
+  //       matchPercent: 0,
+  //       suggestion:
+  //         'Add relevant Agile development methodologies experience if any',
+  //     },
+  //     {
+  //       keyword: 'Docker',
+  //       matchPercent: 75,
+  //       suggestion: 'Expand on experiences using Docker in past projects',
+  //     },
+  //     {
+  //       keyword: 'Ci/CD pipelines',
+  //       matchPercent: 10,
+  //       suggestion: 'Add relevant experiences with CI/CD pipelines if any',
+  //     },
+  //     {
+  //       keyword: 'Next.js',
+  //       matchPercent: 0,
+  //       suggestion: 'Add relevant experiences with Next.js if any',
+  //     },
+  //   ],
+  //   breakdowns: [
+  //     {
+  //       title: 'Skills',
+  //       percentage: 65,
+  //     },
+  //     {
+  //       title: 'Experience',
+  //       percentage: 85,
+  //     },
+  //     {
+  //       title: 'Education',
+  //       percentage: 90,
+  //     },
+  //   ],
+  //   suggestions: [
+  //     {
+  //       title: 'Add Next.js skills',
+  //       priority: 'Medium',
+  //       type: 'Add',
+  //     },
+  //     {
+  //       title: 'Highlight Agile experience',
+  //       description:
+  //         'Add Agile experience if any. Add Agile experience if any. Add Agile experience if any',
+  //       priority: 'High',
+  //       type: 'Edit',
+  //     },
+  //     {
+  //       title: 'Add CI/CD pipelines experience',
+  //       description: 'Add CI/CD pipelines experience if any',
+  //       priority: 'High',
+  //       type: 'Add',
+  //     },
+  //   ],
+  //   strengths: [
+  //     {
+  //       title: 'Strong Java, Python and JavaScript skill sets',
+  //     },
+  //     {
+  //       title: 'Extensive experience with Git',
+  //     },
+  //     {
+  //       title: 'Effective use of RESTful APIs in previous projects',
+  //     },
+  //     {
+  //       title: 'Good educative background and related coursework',
+  //     },
+  //     {
+  //       title: 'Experience with Docker',
+  //     },
+  //   ],
+  // }
 
-  const [analysisData, setAnalysisData] = useState(temporaryData)
+  const [analysisData, setAnalysisData] = useState({})
   const [loading, setLoading] = useState(true)
   const searchParams = useSearchParams()
 
@@ -136,33 +136,19 @@ export default function ResumeSuggestions() {
   useEffect(() => {
     const fetchStoredData = async () => {
       setLoading(true)
-      const storedData = await localStorage.getItem('analysisData')
+      const storedData = localStorage.getItem('analysisData')
       if (storedData) {
         const parsedData = JSON.parse(storedData)
-        // Check if the data is ready before setting it
         if (isDataReady(parsedData)) {
           setAnalysisData(parsedData)
         }
       }
       setLoading(false)
     }
+    fetchStoredData()
+  }, [])
 
-    const fetchTemporaryData = () => {
-      setLoading(true)
-      // Simulate loading
-      setTimeout(() => {}, 2000) // Simulate delay
-      setAnalysisData(temporaryData)
-      setLoading(false)
-    }
-
-    const isLoading = searchParams.get('loading')
-
-    if (isLoading === 'true') {
-      fetchStoredData()
-    }
-  }, [searchParams])
-
-  if (loading || !isDataReady(analysisData)) {
+  if (loading) {
     return (
       <Container className="py-52">
         <LoadingSpinner />
@@ -193,8 +179,12 @@ export default function ResumeSuggestions() {
                   displayKeywordsMetrics ? 'xl:w-[36rem]' : 'xl:w-[50rem]',
                 )}
               >
-                <Summary matchScore={analysisData.matchScore} />
-                <ResumeBreakdown breakdowns={analysisData.breakdowns} />
+                {analysisData.matchScore && (
+                  <Summary matchScore={analysisData.matchScore} />
+                )}
+                {analysisData.breakdowns && (
+                  <ResumeBreakdown breakdowns={analysisData.breakdowns} />
+                )}
               </div>
 
               {displayKeywordsMetrics && (
@@ -213,8 +203,13 @@ export default function ResumeSuggestions() {
                 displayKeywordsMetrics ? 'xl:w-[28rem]' : 'xl:w-full',
               )}
             >
-              <Suggestions suggestions={analysisData.suggestions} />
-              <Strengths strengths={analysisData.strengths} />
+              {analysisData.suggestions && (
+                <Suggestions suggestions={analysisData.suggestions} />
+              )}
+
+              {analysisData.strengths && (
+                <Strengths strengths={analysisData.strengths} />
+              )}
             </div>
           </div>
         </div>
