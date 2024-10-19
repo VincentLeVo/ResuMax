@@ -185,7 +185,7 @@ export default function ResumeSuggestions() {
               ? `, ${analysisData.jobApplicantFirstName}`
               : ','}
           </p>
-          <Heading className="mt-1">Here Is Your Resume Analysis</Heading>
+          <Heading className="mt-1">Resume Analysis</Heading>
           <div className="max-w-10xl mx-auto mt-14 w-full grow lg:flex">
             {/* Left sidebar & main wrapper */}
             <div className="flex-1 xl:flex">

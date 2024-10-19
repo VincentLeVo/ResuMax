@@ -1,13 +1,21 @@
 import { Container } from '@/components/Container'
 import { Textarea } from '@/components/Textarea'
+import clsx from 'clsx'
 
-export function OptionalJobDescription({ jobDescription, setJobDescription }) {
+export function OptionalJobDescription({
+  className,
+  jobDescription,
+  setJobDescription,
+}) {
   return (
     <Container>
       <div>
         <label
           htmlFor="comment"
-          className="block text-xs/6 font-medium leading-6 text-zinc-400"
+          className={clsx(
+            'block text-lg/6 font-medium leading-6 text-zinc-400',
+            className,
+          )}
         >
           Optional: Write in your Job Description.
         </label>

@@ -5,7 +5,8 @@ import { OptionalJobDescription } from '@/components/OptionalJobDescription'
 import { PaperClipIcon } from '@heroicons/react/24/solid'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-
+import { Card } from '@/components/Card'
+import { Heading, Subheading } from '@/components/Text'
 const MAX_FILE_SIZE = 10485760 // 10MB in bytes
 
 export function UploadResume() {
@@ -64,25 +65,28 @@ export function UploadResume() {
   }
 
   return (
-    <Container className="max-w-lg">
+    <Card className="m-auto max-w-2xl shadow-xl">
       <div className="md:flex md:items-center md:justify-between">
         <div className="min-w-0 flex-1">
-          <h2 className="text-2xl font-bold leading-7 text-white sm:truncate sm:text-3xl sm:tracking-tight">
-            Please Upload Your Resume
-          </h2>
+          <Heading className="text-center">Please Upload Your Resume</Heading>
+          <p className="m-auto mt-3 max-w-lg text-center text-zinc-300">
+            This application does an analysis of your resume. Once you upload
+            your resume, you will be able to see suggestions on how to improve
+            it.
+          </p>
         </div>
       </div>
       <form onSubmit={handleSubmit}>
-        <div className="mx-auto mt-2 flex max-w-md flex-col justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
-          <div className="self-center text-center">
+        <div className="mx-auto mt-6 flex flex-col justify-center px-6 py-10">
+          <div className="w-full self-center rounded-xl border border-dashed border-sky-200/80 py-20 text-center">
             <PaperClipIcon
               aria-hidden="true"
-              className="mx-auto h-12 w-12 text-blue-400/50"
+              className="mx-auto h-12 w-12 text-sky-400/60"
             />
-            <div className="mt-4 flex items-center text-sm leading-6 text-zinc-300">
+            <div className="mt-4 flex items-center justify-center text-sm leading-6 text-zinc-300">
               <label
                 htmlFor="file-upload"
-                className="relative cursor-pointer rounded-md bg-blue-300/20 px-3 py-1 font-semibold text-zinc-200 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-blue-500"
+                className="relative cursor-pointer rounded-md bg-sky-300/20 px-3 py-1 text-lg font-semibold text-zinc-200 focus-within:outline-none focus-within:ring-2 focus-within:ring-sky-600 focus-within:ring-offset-2 hover:text-sky-400"
               >
                 Upload a file
                 <input
@@ -147,6 +151,7 @@ export function UploadResume() {
         <OptionalJobDescription
           jobDescription={jobDescription}
           setJobDescription={setJobDescription}
+          className="mt-6"
         />
         <div className="flex justify-center">
           <Button type="submit" color="sky" size="large" className="mt-4">
@@ -154,6 +159,6 @@ export function UploadResume() {
           </Button>
         </div>
       </form>
-    </Container>
+    </Card>
   )
 }
