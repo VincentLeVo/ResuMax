@@ -79,10 +79,10 @@ export function UploadResume() {
               aria-hidden="true"
               className="mx-auto h-12 w-12 text-blue-400/50"
             />
-            <div className="mt-4 flex items-center text-sm leading-6 text-slate-300">
+            <div className="mt-4 flex items-center text-sm leading-6 text-zinc-300">
               <label
                 htmlFor="file-upload"
-                className="relative cursor-pointer rounded-md bg-blue-300/20 px-3 py-1 font-semibold text-slate-200 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-blue-500"
+                className="relative cursor-pointer rounded-md bg-blue-300/20 px-3 py-1 font-semibold text-zinc-200 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-blue-500"
               >
                 Upload a file
                 <input
@@ -95,7 +95,7 @@ export function UploadResume() {
               </label>
               <p className="pl-1">or drag and drop</p>
             </div>
-            <p className="mt-2 text-xs leading-5 text-slate-400">
+            <p className="mt-2 text-xs leading-5 text-zinc-400">
               PDF File Up To 10MB
             </p>
           </div>

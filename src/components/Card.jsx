@@ -11,7 +11,7 @@ export function Card({
   return (
     <div
       className={clsx(
-        'divide-y divide-slate-500/20 overflow-hidden rounded-2xl border border-slate-200/10 bg-slate-900 shadow',
+        'divide-y divide-zinc-500/20 overflow-hidden rounded-2xl border border-zinc-200/10 bg-zinc-900 shadow',
         className,
       )}
       {...props}
