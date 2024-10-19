@@ -13,6 +13,7 @@ import { useState } from 'react'
 
 export default function ResumeSuggestions() {
   const temporaryData = {
+    jobApplicantFirstName: 'Person',
     matchScore: 75,
     keywordMetrics: [
       {
@@ -174,8 +175,14 @@ export default function ResumeSuggestions() {
 
       <Container>
         <div className="flex flex-col">
-          <Heading>Resume Analysis</Heading>
-          <div className="max-w-10xl mx-auto mt-6 w-full grow lg:flex">
+          <p className="text-bold text-xl text-gray-300">
+            Hello
+            {analysisData.jobApplicantFirstName
+              ? `, ${analysisData.jobApplicantFirstName}`
+              : ','}
+          </p>
+          <Heading className="mt-1">Here Is Your Resume Analysis</Heading>
+          <div className="max-w-10xl mx-auto mt-14 w-full grow lg:flex">
             {/* Left sidebar & main wrapper */}
             <div className="flex-1 xl:flex">
               <div className="p-1 xl:w-[28rem] xl:shrink-0">

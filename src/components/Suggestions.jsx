@@ -2,7 +2,11 @@
 
 import { Badge } from '@/components/Badge'
 import { Subheading } from '@/components/Text'
-import { PencilIcon, PlusIcon, XMarkIcon } from '@heroicons/react/24/solid'
+import {
+  PencilSquareIcon,
+  PlusIcon,
+  XMarkIcon,
+} from '@heroicons/react/24/solid'
 import { Card } from '@/components/Card'
 export function Suggestions({ suggestions, className, ...props }) {
   const priorityStyles = {
@@ -14,30 +18,32 @@ export function Suggestions({ suggestions, className, ...props }) {
   const iconMapping = {
     Add: PlusIcon,
     Delete: XMarkIcon,
-    Edit: PencilIcon,
+    Edit: PencilSquareIcon,
   }
 
   return (
     <Card title="Personalized Suggestions" className={className}>
       <div>
-        <ul className="flex flex-col divide-y divide-white/10">
+        <ul className="flex flex-col gap-2 divide-y divide-white/10 sm:gap-5">
           {suggestions.map((suggestion, index) => {
             const Icon = iconMapping[suggestion.type] // Dynamically selecting the icon
             return (
-              <li key={index} className="w-full py-5">
-                <div className="flex content-center">
-                  <Icon className="mr-4 h-6 w-6 self-baseline text-gray-400" />
+              <li
+                key={index}
+                className="w-full rounded-lg border border-slate-200/10 bg-slate-700/20 px-4 py-3 shadow-md"
+              >
+                <div className="flex justify-between">
                   <div>
-                    <p className="text-base font-semibold">
-                      {suggestion.title}
-                    </p>
+                    <p className="text-base font-medium">{suggestion.title}</p>
                     <Badge
-                      className="mt-1"
+                      className="mt-1 sm:mt-2"
                       color={priorityStyles[suggestion.priority]}
+                      size="xs"
                     >
                       {suggestion.priority} Priority
                     </Badge>
                   </div>
+                  <Icon className="h-8 w-8 self-baseline rounded-full border border-white/10 bg-slate-700/80 p-[0.35rem] text-slate-400" />
                 </div>
               </li>
             )

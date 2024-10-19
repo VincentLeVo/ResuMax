@@ -35,7 +35,9 @@ const colors = {
 }
 
 const sizes = {
+  xs: 'px-1 py-0.5 text-xs/5',
   small: 'px-1.5 py-0.5 text-sm/5',
+  medium: 'px-2 py-1 text-base',
   large: 'px-3 py-2 text-lg/5',
   xl: 'px-5 py-3 text-3xl/6',
 }

@@ -182,11 +182,7 @@ export function Navbar({ children }) {
             </DisclosurePanel>
           </Disclosure>
           <header className="py-10">
-            <div className="max-w-10xl mx-auto px-4 sm:px-6 lg:px-8">
-              <h1 className="text-1xl font-bold tracking-tight text-white">
-                Dashboard
-              </h1>
-            </div>
+            <div className="max-w-10xl mx-auto px-4 sm:px-6 lg:px-8"></div>
           </header>
         </div>
 
