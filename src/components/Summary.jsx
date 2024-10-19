@@ -52,9 +52,13 @@ export function Summary({ matchScore, className, ...props }) {
         </div>
 
         <div>
-          <div className="mt-10 text-3xl font-extrabold">
+          <Badge
+            size="xl"
+            color={badgeDetails.color}
+            className="mt-10 text-3xl font-semibold text-white"
+          >
             {badgeDetails.text}
-          </div>
+          </Badge>
           <div className="mt-3 text-center text-sm text-gray-400">
             Resume Status
           </div>

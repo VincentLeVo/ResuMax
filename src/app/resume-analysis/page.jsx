@@ -189,7 +189,7 @@ export default function ResumeSuggestions() {
           <div className="max-w-10xl mx-auto mt-14 w-full grow lg:flex">
             {/* Left sidebar & main wrapper */}
             <div className="flex-1 xl:flex">
-              <div className="flex flex-col gap-y-2 p-1 xl:w-[28rem] xl:shrink-0">
+              <div className="flex flex-col gap-y-2 p-1 xl:w-[20rem] xl:shrink-0">
                 <Summary matchScore={analysisData.matchScore} />
                 <ResumeBreakdown breakdowns={analysisData.breakdowns} />
               </div>
@@ -198,6 +198,7 @@ export default function ResumeSuggestions() {
                 <KeyTermsMetrics keywordMetrics={analysisData.keywordMetrics} />
               </div>
             </div>
+            {/* Right sidebar & main wrapper */}
 
             <div className="flex shrink-0 flex-col gap-y-2 p-1 lg:w-[28rem]">
               <Suggestions suggestions={analysisData.suggestions} />
