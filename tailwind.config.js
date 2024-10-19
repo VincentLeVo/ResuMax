@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: 'Switzer, system-ui, sans-serif',
+      },
       maxWidth: {
         '8xl': '88rem',
         '9xl': '96rem',
@@ -20,9 +23,6 @@ module.exports = {
           900: '#0A1330',
           950: '#081028',
         },
-      },
-      fontFamily: {
-        sans: 'Ranade, system-ui, sans-serif',
       },
     },
   },

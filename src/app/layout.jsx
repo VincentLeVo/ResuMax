@@ -19,8 +19,8 @@ export default async function Layout({ children }) {
         <link rel="preconnect" href="https://rsms.me/" />
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
         <link
+          href="https://api.fontshare.com/v2/css?f[]=switzer@300,400,500,600,700&display=swap"
           rel="stylesheet"
-          href="https://api.fontshare.com/ranade@400,500,600,700&amp;display=swap"
         />
       </head>
       <body>
