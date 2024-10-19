@@ -24,39 +24,39 @@
 ### Steps to Run Locally
 
 1. **Clone the Repository:**
-   \\`\\`\\`
+```
 git clone <repository-url>
 cd resume-analyzer-app
-\\`\\`\\`
+```
 
 2. **Install Dependencies:**
    If you're using npm:
-   \\`\\`\\`
+```
 npm install
-\\`\\`\\`
+```
 
    If you're using Yarn:
-   \\`\\`\\`
+```
 yarn install
-\\`\\`\\`
+```
 
 3. **Set Up Environment Variables:**
    In the root directory, create a `.env.local` file with the following content:
-   \\`\\`\\`
-OPENAI_API_KEY=<your-openai-api-key>
+```
+   OPENAI_API_KEY=<your-openai-api-key>
 NEXT_PUBLIC_API_URL=http://localhost:3000
-\\`\\`\\`
+```
 
-4. **Run the Development Server:**
+5. **Run the Development Server:**
    If you're using npm:
-   \\`\\`\\`
+```
 npm run dev
-\\`\\`\\`
+```
 
    If you're using Yarn:
-   \\`\\`\\`
+```
 yarn dev
-\\`\\`\\`
+```
 
    This will start the application at `http://localhost:3000`.
 
