@@ -1,10 +1,10 @@
 import { Subheading } from '@/components/Text'
 import { getPercentageColor } from '@/utils/statusUtils'
+import { Card } from '@/components/Card'
 
 export function ResumeBreakdown({ breakdowns, className, ...props }) {
   return (
-    <div className={className} {...props}>
-      <Subheading>Resume Breakdown</Subheading>
+    <Card title="Resume Breakdown" className={className} {...props}>
       <dl className="bg-red-400grid mt-3 grid-cols-1 divide-y divide-white/10 overflow-hidden rounded-lg shadow">
         {breakdowns.map((breakdown, index) => {
           const color = getPercentageColor(breakdown.percentage)
@@ -23,6 +23,6 @@ export function ResumeBreakdown({ breakdowns, className, ...props }) {
           )
         })}
       </dl>
-    </div>
+    </Card>
   )
 }

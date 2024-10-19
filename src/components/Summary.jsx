@@ -20,24 +20,44 @@ export function Summary({ matchScore, className, ...props }) {
   const badgeColorClasses = {
     red: 'bg-red-500/10 text-red-400 border-red-500/10',
     green: 'bg-green-500/10 text-green-400 border-green-500/10',
+    orange: 'bg-orange-500/10 text-orange-400 border-orange-500/10',
+    lime: 'bg-lime-500/10 text-lime-400 border-lime-500/10',
     yellow: 'bg-yellow-500/10 text-yellow-400 border-yellow-500/10',
   }
+  const cardColorClasses = {
+    red: 'bg-red-700/10 border-red-500/10',
+    green: 'bg-green-700/10  border-green-500/10',
+    orange: 'bg-orange-700/10  border-orange-500/10',
+    lime: 'bg-lime-700/10  border-lime-500/10',
+    yellow: 'bg-yellow-700/10  border-yellow-500/10',
+  }
+
   return (
-    <Card className={className} title="Summary" {...props}>
+    <Card
+      className={clsx(cardColorClasses[badgeDetails.color], className)}
+      title="Summary"
+      {...props}
+    >
       <div className="flex flex-col items-center">
-        <div className="mb-3 text-xl font-normal">Resume Match Score</div>
+        <div className="mb-3 text-center text-lg text-gray-200">
+          Resume Status
+        </div>
         <div
           className={clsx(
-            `flex h-36 w-36 items-center justify-center rounded-full border-4 text-5xl font-bold`,
+            `flex h-36 w-36 items-center justify-center rounded-full border-4 text-5xl font-semibold`,
             badgeColorClasses[badgeDetails.color],
           )}
         >
           {matchScore}%
         </div>
+
         <div>
-          <Badge size="xl" color={badgeDetails.color} className="mt-6">
+          <div className="mt-10 text-3xl font-extrabold">
             {badgeDetails.text}
-          </Badge>
+          </div>
+          <div className="mt-3 text-center text-sm text-gray-400">
+            Resume Status
+          </div>
         </div>
       </div>
     </Card>
