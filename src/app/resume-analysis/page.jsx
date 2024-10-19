@@ -8,10 +8,8 @@ import { Strengths } from '@/components/Strengths'
 import { Suggestions } from '@/components/Suggestions'
 import { Summary } from '@/components/Summary'
 import { Heading } from '@/components/Text'
-import { Description } from '@headlessui/react'
 import { useSearchParams } from 'next/navigation'
-import { useState } from 'react'
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import clsx from 'clsx'
 export default function ResumeSuggestions() {
   const temporaryData = {
@@ -173,7 +171,7 @@ export default function ResumeSuggestions() {
   }
 
   const displayKeywordsMetrics =
-    analysisData.keywordMetrics && analysisData.keywordMetrics.length > 2
+    analysisData.keywordMetrics && analysisData.keywordMetrics.length > 3
 
   return (
     <>

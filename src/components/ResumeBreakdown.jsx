@@ -1,7 +1,12 @@
 import { Subheading } from '@/components/Text'
 import { getPercentageColor } from '@/utils/statusUtils'
 import { Card } from '@/components/Card'
-import { RadialBarChart, RadialBar, ResponsiveContainer } from 'recharts'
+import {
+  RadialBarChart,
+  RadialBar,
+  ResponsiveContainer,
+  PolarAngleAxis,
+} from 'recharts'
 
 export function ResumeBreakdown({ breakdowns, className, ...props }) {
   const colors = ['#d946ef', '#2563eb', '#22d3ee']
@@ -22,14 +27,19 @@ export function ResumeBreakdown({ breakdowns, className, ...props }) {
           cy="50%"
           innerRadius="60%"
           outerRadius="100%"
-          barSize={10}
+          barSize={12}
           data={breakdownData}
+          startAngle={90}
+          endAngle={-270}
         >
+          <PolarAngleAxis type="number" domain={[0, 100]} tick={false} />
+
           <RadialBar
             minAngle={15}
             clockWise
             dataKey="value"
             cornerRadius={10} // Rounded bars
+            max={100}
           />
         </RadialBarChart>
       </ResponsiveContainer>
