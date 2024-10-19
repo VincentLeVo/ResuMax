@@ -1,12 +1,11 @@
 import { Badge } from '@/components/Badge'
 import { KeyTerm } from '@/components/KeyTerm'
 import { Subheading } from '@/components/Text'
-import { getBadgeDetails } from '@/utils/statusUtils'
+import { getPercentageColor } from '@/utils/statusUtils'
 
 export function KeyTermsMetrics({ keywordMetrics, className, ...props }) {
   return (
     <div className={className} {...props}>
-      {' '}
       <Subheading>Keyword Match</Subheading>
       <div className="mt-4 rounded-lg p-2">
         <table className="w-full min-w-full table-auto whitespace-nowrap text-left text-sm/6 text-white">
@@ -25,14 +24,14 @@ export function KeyTermsMetrics({ keywordMetrics, className, ...props }) {
           </thead>
           <tbody className="divide-y divide-white/5">
             {keywordMetrics.map((keywordMetric, index) => {
-              const badgeDetails = getBadgeDetails(keywordMetric.matchPercent)
+              const badgeColor = getPercentageColor(keywordMetric.matchPercent)
               return (
                 <tr key={index}>
                   <td className="whitespace-nowrap px-3 py-4 text-base font-bold text-white">
                     <KeyTerm>{keywordMetric.keyword}</KeyTerm>
                   </td>
                   <td className="whitespace-nowrap px-3 py-4">
-                    <Badge color={badgeDetails.color}>
+                    <Badge color={badgeColor}>
                       {keywordMetric.matchPercent}%
                     </Badge>
                   </td>

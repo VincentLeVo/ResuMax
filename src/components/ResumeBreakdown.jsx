@@ -1,5 +1,5 @@
 import { Subheading } from '@/components/Text'
-import { getProgressBarColor } from '@/utils/statusUtils'
+import { getPercentageColor } from '@/utils/statusUtils'
 
 export function ResumeBreakdown({ breakdowns, className, ...props }) {
   return (
@@ -7,7 +7,7 @@ export function ResumeBreakdown({ breakdowns, className, ...props }) {
       <Subheading>Resume Breakdown</Subheading>
       <dl className="bg-red-400grid mt-3 grid-cols-1 divide-y divide-white/10 overflow-hidden rounded-lg shadow">
         {breakdowns.map((breakdown, index) => {
-          const color = getProgressBarColor(breakdown.percentage)
+          const color = getPercentageColor(breakdown.percentage)
           return (
             <div key={index} className="py-6">
               <dt className="text-md mb-2 font-semibold text-white">

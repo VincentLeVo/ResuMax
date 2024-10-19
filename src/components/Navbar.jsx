@@ -52,8 +52,8 @@ export function Navbar({ children }) {
                       <Link href="/">
                         <img
                           alt="Your Company"
-                          src="/logos/logoipsum-311.svg"
-                          className="h-16 w-16"
+                          src="/logos/resumaxlogo.svg"
+                          className="h-4 w-auto"
                         />
                       </Link>
                     </div>

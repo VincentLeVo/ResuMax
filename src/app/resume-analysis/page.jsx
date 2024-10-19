@@ -1,4 +1,5 @@
 'use client'
+import { Badge } from '@/components/Badge'
 import { Container } from '@/components/Container'
 import { KeyTermsMetrics } from '@/components/KeyTermsMetrics'
 import { LoadingSpinner } from '@/components/LoadingSpinner'
@@ -160,19 +161,17 @@ export default function ResumeSuggestions() {
   // }, [searchParams])
 
   // if (loading || !isDataReady(analysisData)) {
-  //   return <div>Loading complete data...</div>
+  //   return (
+  //     <Container className="py-52">
+  //       <LoadingSpinner />
+  //     </Container>
+  //   )
   // }
-
-  if (loading) {
-    return (
-      <Container className="py-52">
-        <LoadingSpinner />
-      </Container>
-    )
-  }
 
   return (
     <>
+      <LoadingSpinner className="hidden" />
+
       <Container>
         <div className="flex flex-col">
           <Heading>Resume Analysis</Heading>
