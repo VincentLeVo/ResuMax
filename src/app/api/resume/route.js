@@ -34,8 +34,8 @@ export async function POST(req) {
   "matchScore": number, // Overall match score (you can base this on general best practices)
   "keywordMetrics": [
     {
-      "keyword": string, // A key term identified
-      "matchPercent": number, // Estimated match percentage (0-100)
+      "keyword": string, // A key term or keyword identified in the job description
+      "matchPercent": number, // Estimated match percentage between job description and resume(0-100)
       "suggestion": string // Suggestion for improvement
     },
     // ... up to 7-10 keywords

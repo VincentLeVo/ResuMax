@@ -11,7 +11,7 @@ import { Heading } from '@/components/Text'
 import { Description } from '@headlessui/react'
 import { useSearchParams } from 'next/navigation'
 import { useState } from 'react'
-
+import { useEffect } from 'react'
 export default function ResumeSuggestions() {
   const temporaryData = {
     jobApplicantFirstName: 'Person',
@@ -135,48 +135,46 @@ export default function ResumeSuggestions() {
     )
   }
 
-  // useEffect(() => {
-  //   const fetchStoredData = async () => {
-  //     setLoading(true)
-  //     const storedData = await localStorage.getItem('analysisData')
-  //     if (storedData) {
-  //       const parsedData = JSON.parse(storedData)
-  //       // Check if the data is ready before setting it
-  //       if (isDataReady(parsedData)) {
-  //         setAnalysisData(parsedData)
-  //       }
-  //     }
-  //     setLoading(false)
-  //   }
+  useEffect(() => {
+    const fetchStoredData = async () => {
+      setLoading(true)
+      const storedData = await localStorage.getItem('analysisData')
+      if (storedData) {
+        const parsedData = JSON.parse(storedData)
+        // Check if the data is ready before setting it
+        if (isDataReady(parsedData)) {
+          setAnalysisData(parsedData)
+        }
+      }
+      setLoading(false)
+    }
 
-  //   const fetchTemporaryData = () => {
-  //     setLoading(true)
-  //     // Simulate loading
-  //     setTimeout(() => {
-  //       setAnalysisData(temporaryData)
-  //       setLoading(false)
-  //     }, 2000) // Simulate delay
-  //   }
+    const fetchTemporaryData = () => {
+      setLoading(true)
+      // Simulate loading
+      setTimeout(() => {
+        setAnalysisData(temporaryData)
+        setLoading(false)
+      }, 2000) // Simulate delay
+    }
 
-  //   const isLoading = searchParams.get('loading')
+    const isLoading = searchParams.get('loading')
 
-  //   if (isLoading === 'true') {
-  //     fetchStoredData()
-  //   }
-  // }, [searchParams])
+    if (isLoading === 'true') {
+      fetchStoredData()
+    }
+  }, [searchParams])
 
-  // if (loading || !isDataReady(analysisData)) {
-  //   return (
-  //     <Container className="py-52">
-  //       <LoadingSpinner />
-  //     </Container>
-  //   )
-  // }
+  if (loading || !isDataReady(analysisData)) {
+    return (
+      <Container className="py-52">
+        <LoadingSpinner />
+      </Container>
+    )
+  }
 
   return (
     <>
-      <LoadingSpinner className="hidden" />
-
       <Container>
         <div className="flex flex-col">
           <p className="text-bold text-xl text-gray-300">

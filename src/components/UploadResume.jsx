@@ -17,36 +17,35 @@ export function UploadResume() {
 
   // Handle form submission
   async function handleSubmit(e) {
-    // e.preventDefault()
-    // if (!resumeFile) {
-    //   return setError('No Resume Attached. Please upload a resume.')
-    // }
-    // try {
-    //   const formData = new FormData()
-    //   formData.append('resume', resumeFile)
-    //   formData.append('jobDescription', jobDescription)
-    //   //Navigate to resume analysis page with loading state
-    //   router.push('/resume-analysis?loading=true')
-    //   // Make POST request to the API
-    //   const response = await fetch('/api/resume', {
-    //     method: 'POST',
-    //     body: formData,
-    //   })
-    //   const data = await response.json()
-    //   if (response.ok) {
-    //     // Assuming the API response contains the entire analysis data
-    //     const analysisData = data
-    //     // Store the analysis data in localStorage
-    //     localStorage.setItem('analysisData', JSON.stringify(analysisData))
-    //     setError('')
-    //     // Navigate to the analysis page
-    //   } else {
-    //     setError('Error processing resume.')
-    //   }
-    // } catch (err) {
-    //   setError('An error occurred while submitting the form.')
-    //   console.error(err)
-    // }
+    e.preventDefault()
+    if (!resumeFile) {
+      return setError('No Resume Attached. Please upload a resume.')
+    }
+    try {
+      const formData = new FormData()
+      formData.append('resume', resumeFile)
+      formData.append('jobDescription', jobDescription)
+      //Navigate to resume analysis page with loading state
+      router.push('/resume-analysis?loading=true')
+      // Make POST request to the API
+      const response = await fetch('/api/resume', {
+        method: 'POST',
+        body: formData,
+      })
+      const data = await response.json()
+      if (response.ok) {
+        const analysisData = data
+        // Store the analysis data in localStorage
+        localStorage.setItem('analysisData', JSON.stringify(analysisData))
+        setError('')
+        // Navigate to the analysis page
+      } else {
+        setError('Error processing resume.')
+      }
+    } catch (err) {
+      setError('An error occurred while submitting the form.')
+      console.error(err)
+    }
   }
 
   async function handleFileChange(e) {
