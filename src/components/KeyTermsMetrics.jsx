@@ -48,7 +48,7 @@ export function KeyTermsMetrics({
                       {keywordMetric.matchPercent}%
                     </Badge>
                   </td>
-                  <td className="whitespace-normal px-3 py-3 text-sm sm:px-6">
+                  <td className="whitespace-normal px-3 py-3 text-xs sm:px-6">
                     {keywordMetric.suggestion}
                   </td>
                 </tr>

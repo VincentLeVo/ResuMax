@@ -36,7 +36,7 @@ export function KeyTerm({ color = 'zinc', className, ...props }) {
       {...props}
       className={clsx(
         'inline-flex items-center gap-x-1.5 rounded-md font-bold forced-colors:outline',
-        'text-md/5 px-2 py-1',
+        'px-2 py-1 text-base/5',
         colors[color],
         className,
       )}

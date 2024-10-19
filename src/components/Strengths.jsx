@@ -9,7 +9,7 @@ export function Strengths({ strengths, className, ...props }) {
           return (
             <li key={index} className="w-full p-4 even:bg-white/[2.5%] sm:px-6">
               <div className="flex items-center">
-                <div className="flex h-6 w-6 items-center justify-center rounded-full border border-white/10 bg-zinc-700/80 text-zinc-500">
+                <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-white/10 bg-zinc-700/80 text-zinc-500">
                   ✔
                 </div>
                 <div className="ml-4">
