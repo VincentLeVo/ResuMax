@@ -32,7 +32,7 @@ export async function POST(req) {
 {
   "jobApplicantName": string, // First Name of the job applicant,
   "matchScore": number, // Overall match score (you can base this on general best practices)
-  "keywordMetrics": [
+  "keywordMetrics": [ // If a job description is provided, provide keyword metrics. Otherwise ignore this field.
     {
       "keyword": string, // A key term or keyword identified in the job description
       "matchPercent": number, // Estimated match percentage between job description and resume(0-100)
