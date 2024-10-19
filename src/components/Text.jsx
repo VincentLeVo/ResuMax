@@ -22,7 +22,7 @@ export function Subheading({ className, level = 2, ...props }) {
       {...props}
       className={clsx(
         className,
-        'text-base/7 font-semibold text-white sm:text-sm/6',
+        'text-lg/7 font-semibold uppercase tracking-wider text-slate-400 sm:text-sm/6',
       )}
     />
   )

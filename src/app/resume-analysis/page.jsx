@@ -178,19 +178,20 @@ export default function ResumeSuggestions() {
           <div className="max-w-10xl mx-auto mt-6 w-full grow lg:flex">
             {/* Left sidebar & main wrapper */}
             <div className="flex-1 xl:flex">
-              <div className="border-b border-gray-200 px-4 py-6 sm:px-6 lg:pl-8 xl:w-[32rem] xl:shrink-0 xl:border-b-0 xl:border-r xl:pl-2">
+              <div className="p-1 xl:w-[28rem] xl:shrink-0">
                 <Summary matchScore={analysisData.matchScore} />
                 <ResumeBreakdown
                   breakdowns={analysisData.breakdowns}
-                  className="mt-14"
+                  className="mt-2"
                 />
               </div>
 
-              <div className="px-4 py-6 sm:px-6 lg:pl-8 xl:flex-1 xl:pl-10"></div>
+              <div className="p-1">
+                <KeyTermsMetrics keywordMetrics={analysisData.keywordMetrics} />
+              </div>
             </div>
 
-            <div className="shrink-0 border-t border-gray-200 px-4 py-6 sm:px-6 lg:w-[32rem] lg:border-l lg:border-t-0 lg:pr-8 xl:pr-6">
-              <KeyTermsMetrics keywordMetrics={analysisData.keywordMetrics} />
+            <div className="shrink-0 p-1 lg:w-[28rem]">
               <Suggestions suggestions={analysisData.suggestions} />
               <Strengths strengths={analysisData.strengths} />
             </div>

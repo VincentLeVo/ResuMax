@@ -2,22 +2,37 @@ import { Badge } from '@/components/Badge'
 import { KeyTerm } from '@/components/KeyTerm'
 import { Subheading } from '@/components/Text'
 import { getPercentageColor } from '@/utils/statusUtils'
-
-export function KeyTermsMetrics({ keywordMetrics, className, ...props }) {
+import { Card } from '@/components/Card'
+import clsx from 'clsx'
+export function KeyTermsMetrics({
+  keywordMetrics,
+  className,
+  children,
+  ...props
+}) {
   return (
-    <div className={className} {...props}>
-      <Subheading>Keyword Match</Subheading>
-      <div className="mt-4 rounded-lg p-2">
-        <table className="w-full min-w-full table-auto whitespace-nowrap text-left text-sm/6 text-white">
+    <div
+      className={clsx(
+        'divide-y divide-slate-500/20 overflow-hidden rounded-2xl border border-slate-200/10 bg-slate-900 shadow',
+        className,
+      )}
+      {...props}
+    >
+      <div className="px-4 py-3 sm:px-6">
+        <Subheading>Keyword Metrics</Subheading>
+      </div>
+
+      <div className="">
+        <table className="mt-4 w-full min-w-full table-auto whitespace-nowrap text-left text-sm/6 text-white">
           <thead className="text-zinc-400">
-            <tr className="text-left">
-              <th className="border-b border-b-zinc-950/10 px-3 pb-4 font-medium first:pl-[var(--gutter,theme(spacing.2))] last:pr-[var(--gutter,theme(spacing.2))] dark:border-b-white/10">
+            <tr className="text-left text-base">
+              <th className="border-b border-b-zinc-950/10 p-4 font-medium sm:px-6 dark:border-b-white/10">
                 Keyword
               </th>
-              <th className="border-b border-b-zinc-950/10 px-3 pb-4 font-medium first:pl-[var(--gutter,theme(spacing.2))] last:pr-[var(--gutter,theme(spacing.2))] dark:border-b-white/10">
+              <th className="border-b border-b-zinc-950/10 p-4 font-medium sm:px-6 dark:border-b-white/10">
                 Match %
               </th>
-              <th className="border-b border-b-zinc-950/10 px-3 pb-4 font-medium first:pl-[var(--gutter,theme(spacing.2))] last:pr-[var(--gutter,theme(spacing.2))] dark:border-b-white/10">
+              <th className="border-b border-b-zinc-950/10 p-4 font-medium sm:px-6 dark:border-b-white/10">
                 Suggestions
               </th>
             </tr>
@@ -26,16 +41,16 @@ export function KeyTermsMetrics({ keywordMetrics, className, ...props }) {
             {keywordMetrics.map((keywordMetric, index) => {
               const badgeColor = getPercentageColor(keywordMetric.matchPercent)
               return (
-                <tr key={index}>
-                  <td className="whitespace-nowrap px-3 py-4 text-base font-bold text-white">
+                <tr className="even:bg-white/[2.5%]" key={index}>
+                  <td className="whitespace-nowrap px-3 py-3 text-base font-bold text-white sm:px-6">
                     <KeyTerm>{keywordMetric.keyword}</KeyTerm>
                   </td>
-                  <td className="whitespace-nowrap px-3 py-4">
+                  <td className="whitespace-nowrap px-3 py-3 sm:px-6">
                     <Badge color={badgeColor}>
                       {keywordMetric.matchPercent}%
                     </Badge>
                   </td>
-                  <td className="whitespace-nowrap px-3 py-4 text-sm">
+                  <td className="whitespace-normal px-3 py-3 text-sm sm:px-6">
                     {keywordMetric.suggestion}
                   </td>
                 </tr>

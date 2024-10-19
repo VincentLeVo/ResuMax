@@ -35,10 +35,10 @@ export function KeyTerm({ color = 'zinc', className, ...props }) {
     <span
       {...props}
       className={clsx(
-        className,
-        'inline-flex items-center gap-x-1.5 rounded-md font-medium forced-colors:outline',
+        'inline-flex items-center gap-x-1.5 rounded-md font-bold forced-colors:outline',
         'text-md/5 px-2 py-1',
         colors[color],
+        className,
       )}
     />
   )

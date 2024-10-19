@@ -1,5 +1,5 @@
 import { clsx } from 'clsx'
-import { Subheading } from '@/components/Heading'
+import { Subheading } from '@/components/Text'
 
 export function Card({ title = '', className, children, ...props }) {
   return (
