@@ -1,36 +1,108 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# ResuMax Application
 
-## Getting Started
+## Overview
 
-First, run the development server:
+**ResuMax** is a tool designed to help users improve their resumes. Users can upload their resume (in PDF format), and the application analyzes it against an optional job description. The system provides insights into areas for improvement, suggests changes, and highlights strengths.
 
-```bash
+### Key Features:
+
+- **Resume Upload:** Users can upload a PDF version of their resume.
+- **Analysis Suggestions:** The app analyzes the resume for key metrics, match percentages, and suggests improvements.
+- **Job Description Match:** Users can optionally input a job description to better tailor suggestions.
+- **Analysis Results:** The app provides suggestions for resume enhancement, keyword matches, strengths, and overall score.
+
+---
+
+## How to Run This Application
+
+### Prerequisites
+
+- **Node.js**: Ensure you have Node.js installed (v16 or higher recommended).
+- **NPM or Yarn**: You’ll need npm (comes with Node.js) or Yarn to install dependencies.
+- **OpenAI API Key**: You will need an API key from OpenAI to use the AI-driven suggestions feature.
+
+### Steps to Run Locally
+
+1. **Clone the Repository:**
+   \\`\\`\\`
+git clone <repository-url>
+cd resume-analyzer-app
+\\`\\`\\`
+
+2. **Install Dependencies:**
+   If you're using npm:
+   \\`\\`\\`
+npm install
+\\`\\`\\`
+
+   If you're using Yarn:
+   \\`\\`\\`
+yarn install
+\\`\\`\\`
+
+3. **Set Up Environment Variables:**
+   In the root directory, create a `.env.local` file with the following content:
+   \\`\\`\\`
+OPENAI_API_KEY=<your-openai-api-key>
+NEXT_PUBLIC_API_URL=http://localhost:3000
+\\`\\`\\`
+
+4. **Run the Development Server:**
+   If you're using npm:
+   \\`\\`\\`
 npm run dev
-# or
+\\`\\`\\`
+
+   If you're using Yarn:
+   \\`\\`\\`
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+\\`\\`\\`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+   This will start the application at `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Project Structure
 
-## Learn More
+- **/components**: Contains reusable components like buttons, spinners, and UI elements.
+- **/pages/api/resume.js**: Backend route to process the resume PDF, perform AI analysis, and return suggestions.
+- **/pages/resume-analysis.js**: Frontend page that shows the results of the resume analysis.
+- **/public**: Contains static assets like images.
+- **/utils**: Utility functions for handling data, status, etc.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## How It Works
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+1. **Upload a Resume**: The user selects and uploads their resume in PDF format.
+2. **Optional Job Description**: If provided, the resume is analyzed against the job description for a better match.
+3. **AI-Driven Suggestions**: The app uses the OpenAI API to generate personalized suggestions based on the resume content.
+4. **View Analysis**: The results page displays key metrics, such as keyword match percentages, strengths, and suggestions for improvement.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Technologies Used
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- **Next.js**: React-based framework for building the frontend and API routes.
+- **Tailwind CSS**: For building the user interface with minimal effort.
+- **OpenAI API**: For generating resume suggestions and performing analysis.
+- **React Hooks**: Managing state and effects across components.
+- **LocalStorage**: Storing analysis data locally for fast access after the resume is processed.
+
+---
+
+## Contributions
+
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](#).
+
+---
+
+## License
+
+This project is licensed under the MIT License.
+
+---
+
+## Author
+
+Built by **[Your Name]**. Feel free to reach out with any questions or feedback!
