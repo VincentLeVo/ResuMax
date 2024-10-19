@@ -172,13 +172,8 @@ export default function ResumeSuggestions() {
           <Heading className="mt-1">Resume Analysis</Heading>
           <div className="max-w-10xl mx-auto mt-14 w-full grow lg:flex">
             {/* Left sidebar & main wrapper */}
-            <div className={clsx('flex-1 xl:flex')}>
-              <div
-                className={clsx(
-                  'shrink-1 flex flex-col gap-y-2 p-1',
-                  displayKeywordsMetrics ? 'xl:w-[36rem]' : 'xl:w-[50rem]',
-                )}
-              >
+            <div className="flex-1 xl:flex">
+              <div className="shrink-1 flex flex-col gap-y-2 p-1 xl:min-w-[16rem] xl:max-w-[50rem]">
                 {analysisData.matchScore && (
                   <Summary matchScore={analysisData.matchScore} />
                 )}
@@ -189,24 +184,22 @@ export default function ResumeSuggestions() {
 
               {displayKeywordsMetrics && (
                 <div className="shrink-1 flex flex-col gap-y-2 p-1">
+                  {' '}
+                  {/* Allow this to shrink */}
                   <KeyTermsMetrics
                     keywordMetrics={analysisData.keywordMetrics}
                   />
                 </div>
               )}
             </div>
-            {/* Right sidebar & main wrapper */}
 
-            <div
-              className={clsx(
-                'shrink-1 flex flex-col gap-y-2 p-1',
-                displayKeywordsMetrics ? 'xl:w-[28rem]' : 'xl:w-full',
-              )}
-            >
+            {/* Right sidebar & main wrapper */}
+            <div className="shrink-1 flex flex-col gap-y-2 p-1 lg:min-w-[20rem] xl:max-w-[50rem]">
+              {' '}
+              {/* Fixed width */}
               {analysisData.suggestions && (
                 <Suggestions suggestions={analysisData.suggestions} />
               )}
-
               {analysisData.strengths && (
                 <Strengths strengths={analysisData.strengths} />
               )}

@@ -36,7 +36,7 @@ export function Suggestions({ suggestions, className, ...props }) {
                   <div>
                     <p className="text-base font-medium">{suggestion.title}</p>
                     {suggestion.description && (
-                      <p className="mt-2 max-w-64 text-xs text-zinc-400">
+                      <p className="mt-2 max-w-sm text-xs text-zinc-400">
                         {suggestion.description}
                       </p>
                     )}
@@ -48,7 +48,7 @@ export function Suggestions({ suggestions, className, ...props }) {
                       {suggestion.priority} Priority
                     </Badge>
                   </div>
-                  <Icon className="h-8 w-8 self-baseline rounded-full border border-white/10 bg-zinc-700/80 p-[0.35rem] text-zinc-400" />
+                  <Icon className="ml-8 h-8 w-8 shrink-0 self-baseline rounded-full border border-white/10 bg-zinc-700/80 p-[0.35rem] text-zinc-400" />
                 </div>
               </li>
             )
