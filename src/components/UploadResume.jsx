@@ -64,7 +64,7 @@ export function UploadResume() {
   }
 
   return (
-    <Container>
+    <Container className="max-w-lg">
       <div className="md:flex md:items-center md:justify-between">
         <div className="min-w-0 flex-1">
           <h2 className="text-2xl font-bold leading-7 text-white sm:truncate sm:text-3xl sm:tracking-tight">
@@ -149,7 +149,7 @@ export function UploadResume() {
           setJobDescription={setJobDescription}
         />
         <div className="flex justify-center">
-          <Button type="submit" color="blue" size="large" className="mt-4">
+          <Button type="submit" color="sky" size="large" className="mt-4">
             Submit
           </Button>
         </div>

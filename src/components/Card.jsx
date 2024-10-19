@@ -21,7 +21,7 @@ export function Card({
           <Subheading>{title}</Subheading>
         </div>
       )}
-      <div className={!bleedContent && 'px-4 py-5 sm:p-6'}>{children}</div>
+      <div className={!bleedContent ? 'px-4 py-5 sm:p-6' : ''}>{children}</div>
     </div>
   )
 }

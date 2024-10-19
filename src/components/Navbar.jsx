@@ -18,7 +18,7 @@ const user = {
     'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
 }
 const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
+  { name: 'Dashboard', href: '/', current: true },
   { name: 'NavLink', href: '#', current: false },
   { name: 'NavLink', href: '#', current: false },
   { name: 'NavLink', href: '#', current: false },
@@ -66,9 +66,9 @@ export function Navbar({ children }) {
                             aria-current={item.current ? 'page' : undefined}
                             className={clsx(
                               item.current
-                                ? 'bg-blue-800 text-white'
-                                : 'text-gray-300 hover:bg-blue-700/50 hover:text-white',
-                              'rounded-md px-4 py-3 text-sm font-medium',
+                                ? 'bg-sky-300 text-sky-950'
+                                : 'text-gray-300 hover:bg-sky-700/50 hover:text-white',
+                              'rounded-md px-2 py-1 text-sm font-medium',
                             )}
                           >
                             {item.name}

@@ -131,7 +131,7 @@ const styles = {
       '[--btn-icon:theme(colors.white/60%)] data-[active]:[--btn-icon:theme(colors.white/80%)] data-[hover]:[--btn-icon:theme(colors.white/80%)]',
     ],
     sky: [
-      'text-white [--btn-hover-overlay:theme(colors.white/10%)] [--btn-bg:theme(colors.sky.500)] [--btn-border:theme(colors.sky.600/80%)]',
+      'text-sky-950 [--btn-hover-overlay:theme(colors.white/10%)] [--btn-bg:theme(colors.sky.300)] [--btn-border:theme(colors.sky.600/80%)]',
       '[--btn-icon:theme(colors.white/60%)] data-[active]:[--btn-icon:theme(colors.white/80%)] data-[hover]:[--btn-icon:theme(colors.white/80%)]',
     ],
     blue: [
