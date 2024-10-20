@@ -1,6 +1,6 @@
 {
   "functions": {
-    "/app/api/resume/": {
+    "src/app/api/resume/route.js": {
       "maxDuration": 60
     }
   }
