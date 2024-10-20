@@ -73,6 +73,11 @@ export function UploadResume() {
     return (
       <Container className="py-52">
         <LoadingSpinner />
+        <p className="mt-6 text-center text-sm text-gray-400">
+          We are processing your resume. This may take up to 30 seconds.
+          <br />
+          Please hold on while we analyze the data.
+        </p>
       </Container>
     )
   }
