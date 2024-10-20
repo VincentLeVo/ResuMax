@@ -25,9 +25,9 @@ export function ResumeBreakdown({ breakdowns, className, ...props }) {
         <RadialBarChart
           cx="50%"
           cy="50%"
-          innerRadius="60%"
+          innerRadius="40%"
           outerRadius="100%"
-          barSize={12}
+          barSize={11}
           data={breakdownData}
           startAngle={90}
           endAngle={-270}
