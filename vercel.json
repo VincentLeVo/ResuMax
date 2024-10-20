@@ -1,6 +1,6 @@
 {
   "functions": {
-    "api/resume": {
+    "/app/api/resume/": {
       "maxDuration": 60
     }
   }
