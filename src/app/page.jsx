@@ -34,10 +34,10 @@ function Hero({ buttonHandler, ...props }) {
       </div>
       <div className="relative z-20">
         <h1 className="font-display mx-auto max-w-4xl text-5xl font-medium tracking-tight text-white sm:text-7xl">
-          Build a Resume That{' '}
-          <span className="relative whitespace-nowrap text-sky-400">
-            <span className="relative">Gets Results</span>
-          </span>{' '}
+          Build a Resume That <br></br>
+          <span className="relative bg-gradient-to-r from-sky-300 to-blue-500 bg-clip-text text-transparent">
+            Gets Results
+          </span>
         </h1>
         <p className="mx-auto mt-6 max-w-2xl text-lg text-zinc-400">
           Get instant, personalized feedback on your resume to help you catch

@@ -56,7 +56,7 @@ export async function POST(req) {
   ],
   "strengths": [
     { "title": string },
-    // ... list of strengths and pros of the resume
+    // ... list of strengths and pros of the resume. Each Strength should a string of 50-130 characters
   ]
 }
 
