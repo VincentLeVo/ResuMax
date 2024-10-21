@@ -180,3 +180,5 @@ export const UploadResume = forwardRef((props, ref) => {
     </Card>
   )
 })
+
+UploadResume.displayName = 'UploadResume'
