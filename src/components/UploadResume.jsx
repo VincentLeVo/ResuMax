@@ -4,14 +4,14 @@ import { Container } from '@/components/Container'
 import { OptionalJobDescription } from '@/components/OptionalJobDescription'
 import { PaperClipIcon } from '@heroicons/react/24/solid'
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useState, forwardRef } from 'react'
 import { Card } from '@/components/Card'
 import { Heading, Subheading } from '@/components/Text'
 import { LoadingSpinner } from '@/components/LoadingSpinner'
 
 const MAX_FILE_SIZE = 10485760 // 10MB in bytes
 
-export function UploadResume() {
+export const UploadResume = forwardRef((props, ref) => {
   const [resumeFile, setResumeFile] = useState(null)
   const [jobDescription, setJobDescription] = useState('')
   const [error, setError] = useState('') // To store error messages
@@ -83,7 +83,7 @@ export function UploadResume() {
   }
 
   return (
-    <Card className="m-auto max-w-2xl shadow-xl">
+    <Card className="relative z-20 m-auto max-w-2xl shadow-xl">
       <div className="md:flex md:items-center md:justify-between">
         <div className="min-w-0 flex-1">
           <Heading className="text-center">Please Upload Your Resume</Heading>
@@ -171,7 +171,7 @@ export function UploadResume() {
           setJobDescription={setJobDescription}
           className="mt-7"
         />
-        <div className="flex justify-center">
+        <div ref={ref} className="flex justify-center">
           <Button type="submit" color="sky" size="large" className="mt-4">
             Submit
           </Button>
@@ -179,4 +179,4 @@ export function UploadResume() {
       </form>
     </Card>
   )
-}
+})

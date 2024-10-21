@@ -17,13 +17,7 @@ const user = {
   imageUrl:
     'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
 }
-const navigation = [
-  { name: 'Dashboard', href: '/', current: true },
-  { name: 'NavLink', href: '#', current: false },
-  { name: 'NavLink', href: '#', current: false },
-  { name: 'NavLink', href: '#', current: false },
-  { name: 'NavLink', href: '#', current: false },
-]
+const navigation = [{ name: 'Dashboard', href: '/', current: true }]
 const userNavigation = [
   { name: 'Your Profile', href: '#' },
   { name: 'Settings', href: '#' },
@@ -44,7 +38,7 @@ export function Navbar({ children }) {
       <div className="min-h-full">
         <div className="bg-zinc-900 pb-32">
           <Disclosure as="nav" className="bg-zinc-800">
-            <div className="max-w-10xl mx-auto sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-10xl sm:px-6 lg:px-8">
               <div className="border-b border-zinc-700">
                 <div className="flex h-16 items-center justify-between px-4 sm:px-0">
                   <div className="flex items-center">
@@ -182,13 +176,13 @@ export function Navbar({ children }) {
             </DisclosurePanel>
           </Disclosure>
           <header className="py-10">
-            <div className="max-w-10xl mx-auto px-4 sm:px-6 lg:px-8"></div>
+            <div className="mx-auto max-w-10xl px-4 sm:px-6 lg:px-8"></div>
           </header>
         </div>
 
         <main className="-mt-32">
-          <div className="max-w-10xl mx-auto px-4 pb-12 sm:px-6 lg:px-8">
-            <div className="rounded-lg bg-zinc-800 px-5 py-6 shadow sm:px-6">
+          <div className="mx-auto max-w-10xl px-4 pb-12 sm:px-6 lg:px-8">
+            <div className="relative rounded-lg bg-zinc-800 px-5 py-6 shadow sm:px-6">
               {children}
             </div>
           </div>
