@@ -1,4 +1,6 @@
 import { Link } from '@/components/Link'
+import { Footer } from '@/components/Footer'
+
 import {
   Disclosure,
   DisclosureButton,
@@ -9,8 +11,8 @@ import {
   MenuItems,
 } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-
 import clsx from 'clsx'
+
 const user = {
   name: 'Tom Cook',
   email: 'tom@example.com',
@@ -187,6 +189,7 @@ export function Navbar({ children }) {
             </div>
           </div>
         </main>
+        <Footer />
       </div>
     </>
   )
