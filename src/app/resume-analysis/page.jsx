@@ -168,15 +168,22 @@ export default function ResumeSuggestions() {
         <div className="flex flex-col">
           <p className="text-bold text-xl text-gray-300">
             Hello
-            {analysisData.jobApplicantFirstName
-              ? `, ${analysisData.jobApplicantFirstName}`
+            {analysisData.jobApplicantName
+              ? `, ${analysisData.jobApplicantName}`
               : ','}
           </p>
-          <Heading className="mt-1">Resume Analysis</Heading>
+          <Heading className="mt-1">Below is your Resume Analysis</Heading>
           <div className="mx-auto mt-14 w-full max-w-10xl grow lg:flex">
             {/* Left sidebar & main wrapper */}
             <div className="flex-1 xl:flex">
-              <div className="shrink-1 flex flex-col gap-y-2 p-1 xl:min-w-[16rem] xl:max-w-[50rem]">
+              <div
+                className={clsx(
+                  'shrink-1 flex flex-col gap-y-2 p-1',
+                  displayKeywordsMetrics
+                    ? 'xl:min-w-[20rem] xl:max-w-[50rem]'
+                    : 'xl:w-full',
+                )}
+              >
                 {analysisData.matchScore && (
                   <Summary matchScore={analysisData.matchScore} />
                 )}
@@ -197,7 +204,12 @@ export default function ResumeSuggestions() {
             </div>
 
             {/* Right sidebar & main wrapper */}
-            <div className="shrink-1 flex flex-col gap-y-2 p-1 lg:min-w-[20rem] xl:max-w-[50rem]">
+            <div
+              className={clsx(
+                'shrink-1 flex flex-col gap-y-2 p-1',
+                displayKeywordsMetrics ? '' : 'xl-min-w-2/3',
+              )}
+            >
               {' '}
               {/* Fixed width */}
               {analysisData.suggestions && (
